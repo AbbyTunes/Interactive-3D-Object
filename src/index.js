@@ -1,11 +1,11 @@
 import Geometry from "./Geometry";
 
-var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas1'), antialias: true });
+var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
 renderer.setClearColor(0x000000);
 renderer.setPixelRatio(window.devicePixelRatio);
 
-const maxWidth = window.innerWidth / 2;
-const maxHeight = window.innerHeight / 2;
+const maxWidth = window.innerWidth;
+const maxHeight = window.innerHeight;
 renderer.setSize(maxWidth, maxHeight);
 
 // add a camera
@@ -25,24 +25,11 @@ scene.add(light2);
 
 // changing geometry
 
-var selectShape = document.getElementById("select-shape");
+var selectShape = document.getElementById("shape");
 let shape = selectShape.options[selectShape.selectedIndex].value;
 
 let geometryIns = new Geometry();
 let geometry = geometryIns.setShape();
-
-selectShape.addEventListener('change', () => {
-	// try to remove the old object
-	geometry.dispose();
-	geometry = null;
-	console.log(`after dispose: ${geometry}`);
-	
-	shape = selectShape.options[selectShape.selectedIndex].value;
-	console.log(`shape after change: ${shape}`);
-	geometry = geometryIns.setShape(shape);
-	debugger;
-	render();
-})
 
 // var material = new THREE.MeshBasicMaterial();
 var material = new THREE.MeshLambertMaterial({ color: 0xF3FFE2 });
@@ -53,6 +40,7 @@ material.needsUpdate = true
 var mesh = new THREE.Mesh(geometry, material);
 
 mesh.position.set(0, 0, -1000);
+mesh.name = "sphere";
 
 scene.add(mesh);
 
@@ -65,3 +53,36 @@ function render() {
 	requestAnimationFrame(render);
 }
 // }
+
+selectShape.addEventListener('change', () => {
+	
+	console.log(`shape before change: ${shape}`);
+	// console.log(`name before change: ${mesh.name}`)
+
+	var selectedObject = scene.getObjectByName(shape);
+	scene.remove(selectedObject);
+	
+	shape = selectShape.options[selectShape.selectedIndex].value;
+	geometry = geometryIns.setShape(shape);
+	console.log(`shape after change: ${shape}`)
+
+	// try to rerender the object
+	var mesh = new THREE.Mesh(geometry, material);
+	
+	// set an offset position
+	mesh.position.set(20, 20, -1000);
+	console.log(`created new mesh: ${mesh}`);
+	mesh.name = shape;
+	console.log(`new mesh name: ${mesh.name}`);
+	scene.add(mesh);
+
+	requestAnimationFrame(render);
+
+	function render() {
+		mesh.rotation.x += 0.01;
+		mesh.rotation.y += 0.01;
+		renderer.render(scene, camera);
+		requestAnimationFrame(render);
+	}
+})
+
