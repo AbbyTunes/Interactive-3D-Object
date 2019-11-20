@@ -1,5 +1,3 @@
-import Geometry from "./Geometry";
-
 var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas1'), antialias: true });
 renderer.setClearColor(0x000000);
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -21,28 +19,7 @@ var light2 = new THREE.PointLight(0xffffff, 0.5);
 scene.add(light2);
 
 // adding geometry
-// var geometry = new THREE.CubeGeometry(100, 100, 100);
-
-// changing geometry
-
-var selectShape = document.getElementById("select-shape");
-let shape = selectShape.options[selectShape.selectedIndex].value;
-
-let geometryIns = new Geometry();
-let geometry = geometryIns.setShape();
-
-selectShape.addEventListener('change', () => {
-	// try to remove the old object
-	geometry.dispose();
-	geometry = null;
-	console.log(`after dispose: ${geometry}`);
-	
-	shape = selectShape.options[selectShape.selectedIndex].value;
-	console.log(`shape after change: ${shape}`);
-	geometry = geometryIns.setShape(shape);
-	debugger;
-	render();
-})
+var geometry = new THREE.CubeGeometry(100, 100, 100);
 
 // var material = new THREE.MeshBasicMaterial();
 var material = new THREE.MeshLambertMaterial({ color: 0xF3FFE2 });
@@ -58,7 +35,7 @@ scene.add(mesh);
 
 requestAnimationFrame(render);
 
-function render() {
+export default function render() {
 	mesh.rotation.x += 0.01;
 	mesh.rotation.y += 0.01;
 	renderer.render(scene, camera);

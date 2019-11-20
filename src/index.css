@@ -20,10 +20,10 @@ html, body, canvas {
 	height: 30px;
 }
 
-/* #shape {
+#select-shape {
 	position: absolute;
-	top: 50px;
-	left: 130px;
+	top: 100px;
+	left: 30px;
 	width: 100px;
 	height: 30px;
-} */
+}

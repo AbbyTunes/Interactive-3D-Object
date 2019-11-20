@@ -35,12 +35,6 @@ selectCanvas.addEventListener('change', () => {
 	canvasNum = selectCanvas.options[selectCanvas.selectedIndex].value;
 	canvas = canvasIns.setCanvas(canvasNum);
 });
-
-
-
-
-
-
 	
 // if (WEBGL.isWebGLAvailable()) {
 
