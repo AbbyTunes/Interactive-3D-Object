@@ -7,21 +7,46 @@
 		<script src="../js/WebGL.js"></script>
 
 		<style></style>
-		<link rel="stylesheet" href="../src/index.css">
+		<link rel="stylesheet" href="../src/geo.css">
     
   </head>
 
   <body>
 		<canvas id="canvas"></canvas>
 
-			<select className="select" id="shape">
-				<option value="sphere">sphere</option>
-				<option value="cube">cube</option>
-				<option value="octahedron">octahedron</option>
-				<option value="tetradron">tetradron</option>
-				<option value="icosahedron">icosahedron</option>
-				<option value="torusKnot">torusKnot</option>
-			</select>
+		<div id="panel">
+			<span>
+				<label for="shape">Geometry</label>
+				<select id="shape">
+					<option value="cube">cube</option>
+					<option value="sphere">sphere</option>
+					<option value="cone">cone</option>
+					<option value="octahedron">octahedron</option>
+					<option value="tetradron">tetradron</option>
+					<option value="torus">torus</option>
+					<option value="torusKnot">torusKnot</option>
+				</select>
+			</span>
+
+			<span>
+				<label for="material">Material</label>
+				<select id="material">
+					<option value="Mesh Lambert">Lambert</option>
+					<option value="Mesh Standard">Metallic</option>
+					<option value="Mesh Normal">Rainbow</option>
+					<option value="Mesh Phong">Phong</option>
+					<option value="Line Basic">Line</option>
+					<option value="Line Dashed">Line Dashed</option>
+				</select>
+			</span>
+			
+			
+				
+			
+		
+		</div>
+
+			
 
 		<script src="main.js"></script>
 

@@ -1,0 +1,55 @@
+html, body, canvas {
+	padding: 0px;
+	margin: 0px;
+	overflow: hidden;
+}
+
+#canvas {
+	background: black;
+}
+
+#panel {
+	display: block;
+	position: absolute;
+	top: 20px;
+	left: 0;
+	width: 200px;
+	height: auto;
+	padding: 30px;
+	border: 1px solid white;
+	/* z-index: 100; */
+}
+
+#panel span {
+	display: flex;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 200px;
+	height: 100px;
+	border: rgb(114, 146, 214);
+}
+
+#panel label {
+	position: relative;
+	top: 0;
+	left: 0;
+	margin: 15px 0;
+	width: 50px;
+	height: 30px;
+	border: none;
+	background: rgb(189, 221, 147);
+	color: black;
+}
+
+#panel select {
+	position: relative;
+	top: 0;
+	left: 60px;
+	width: 100px;
+	height: 30px;
+	border: none;
+	background: rgb(219, 219, 219);
+	color: black;
+}
+

@@ -1,4 +1,5 @@
 import Geometry from "./Geometry";
+import Material from "./Material";
 
 var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
 renderer.setClearColor(0x000000);
@@ -8,81 +9,86 @@ const maxWidth = window.innerWidth;
 const maxHeight = window.innerHeight;
 renderer.setSize(maxWidth, maxHeight);
 
-// add a camera
+// init camera
 var camera = new THREE.PerspectiveCamera(35, maxWidth / maxHeight, 0.1, 3000);
 // camera.position.set(0, 0, 0);
+
+// init scene
 var scene = new THREE.Scene();
 
-//adding light
+// init light
 var light1 = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(light1);
 
 var light2 = new THREE.PointLight(0xffffff, 0.5);
 scene.add(light2);
 
-// adding geometry
-// var geometry = new THREE.CubeGeometry(100, 100, 100);
-
-// changing geometry
-
+// init geometry
 var selectShape = document.getElementById("shape");
-let shape = selectShape.options[selectShape.selectedIndex].value;
-
+let shapeName = "cube";
 let geometryIns = new Geometry();
-let geometry = geometryIns.setShape();
+let geometry = geometryIns.setShape(shapeName);
 
-// var material = new THREE.MeshBasicMaterial();
-var material = new THREE.MeshLambertMaterial({ color: 0xF3FFE2 });
-material.needsUpdate = true
+// init material
+var selectMaterial = document.getElementById("material");
+let materialName = "Mesh Lambert"
+let materialIns = new Material();
+let material = materialIns.setMaterial(materialName)
 
-// fullRender(geometry, material);
-// function fullRender(geometry, material) {
-var mesh = new THREE.Mesh(geometry, material);
+// first render
+fullRender(geometry, material, shapeName, 0, 0);
 
-mesh.position.set(0, 0, -1000);
-mesh.name = "sphere";
+function fullRender(geometry, material, shapeName, offsetX, offsetY ) {
 
-scene.add(mesh);
+	let mesh;
 
-requestAnimationFrame(render);
+	if (material.isLineDashedMaterial) {
+		mesh = new THREE.Line(geometry, material);
+		mesh.computeLineDistances();
+	} else if (material.isLineBasicMaterial) {
+		mesh = new THREE.Line(geometry, material);
+	} else {
+		mesh = new THREE.Mesh(geometry, material);
+	}
 
-function render() {
-	mesh.rotation.x += 0.01;
-	mesh.rotation.y += 0.01;
-	renderer.render(scene, camera);
-	requestAnimationFrame(render);
-}
-// }
+	mesh.position.set(offsetX, offsetY, -1000);
+	mesh.name = shapeName;
 
-selectShape.addEventListener('change', () => {
-	
-	console.log(`shape before change: ${shape}`);
-	// console.log(`name before change: ${mesh.name}`)
-
-	var selectedObject = scene.getObjectByName(shape);
-	scene.remove(selectedObject);
-	
-	shape = selectShape.options[selectShape.selectedIndex].value;
-	geometry = geometryIns.setShape(shape);
-	console.log(`shape after change: ${shape}`)
-
-	// try to rerender the object
-	var mesh = new THREE.Mesh(geometry, material);
-	
-	// set an offset position
-	mesh.position.set(20, 20, -1000);
-	console.log(`created new mesh: ${mesh}`);
-	mesh.name = shape;
-	console.log(`new mesh name: ${mesh.name}`);
 	scene.add(mesh);
 
 	requestAnimationFrame(render);
-
 	function render() {
 		mesh.rotation.x += 0.01;
 		mesh.rotation.y += 0.01;
 		renderer.render(scene, camera);
 		requestAnimationFrame(render);
 	}
-})
+}
 
+
+selectShape.addEventListener('change', () => {
+
+	// console.log(`shape before change: ${shapeName}`);
+	var selectedObject = scene.getObjectByName(shapeName);
+	scene.remove(selectedObject);
+
+	shapeName = selectShape.options[selectShape.selectedIndex].value;
+	geometry = geometryIns.setShape(shapeName);
+
+	// console.log(`shape after change: ${shapeName}`)
+	fullRender(geometry, material, shapeName, 0, 0);
+});
+
+selectMaterial.addEventListener('change', () => {
+
+	var selectedObject = scene.getObjectByName(shapeName);
+	scene.remove(selectedObject);
+
+	materialName = selectMaterial.options[selectMaterial.selectedIndex].value;
+	material = materialIns.setMaterial(materialName);
+	material.needsUpdate = true;
+	
+	console.log(`material after change: ${materialName}`)
+	console.log(material)
+	fullRender(geometry, material, shapeName, 0, 0);
+});
