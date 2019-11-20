@@ -1,0 +1,29 @@
+html, body, canvas {
+	padding: 0px;
+	margin: 0px;
+	overflow: hidden;
+}
+
+#canvas1 {
+	background: black;
+}
+
+#canvas2 {
+	background: grey;
+}
+
+#select-canvas {
+	position: absolute;
+	top: 50px;
+	left: 30px;
+	width: 100px;
+	height: 30px;
+}
+
+/* #shape {
+	position: absolute;
+	top: 50px;
+	left: 130px;
+	width: 100px;
+	height: 30px;
+} */

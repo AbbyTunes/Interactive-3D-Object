@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>New_Experiment</title>
+		<title>New_Experiment</title>
+		
+		<script src="../js/three.js"></script>
+		<script src="../js/WebGL.js"></script>
 
-    <style>
-      html, body, canvas {
-        padding: 0px;
-        margin: 0px;
-				overflow: hidden;
-				background-color: black;
-      }
-    </style>
+		<style></style>
+		<link rel="stylesheet" href="../src/index.css">
+    
   </head>
 
   <body>
-		<canvas id="canvas"></canvas>
-    <script src="main.js"></script>
+		<canvas id="canvas1">Canvas 1</canvas>
+		<canvas id="canvas2">Canvas 2</canvas>
+
+			<select id="select-canvas">
+				<option value="canvas1">cube</option>
+				<option value="canvas2">square</option>
+			</select>
+
+		<script src="main.js"></script>
+
+		
+		
   </body>
 </html>
