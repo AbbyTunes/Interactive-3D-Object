@@ -1,4 +1,4 @@
-html, body, canvas, div, span, label, select, option, input {
+html, body, canvas, div, span, label, select, option, input, p {
 	padding: 0px;
 	margin: 0px;
 	overflow: hidden;
@@ -49,10 +49,10 @@ canvas {
 	height: auto;
 	padding: 20px 30px;
 	border: 1px solid white;
-	transition: all .5s;
+	/* transition: all .5s;
 	animation: searchOpen .2s;
     animation-delay: .3s;
-    animation-fill-mode: backwards;
+    animation-fill-mode: backwards; */
 }
 
 span {
@@ -72,7 +72,6 @@ label {
 	color: white;
 }
 
-
 select {
 	position: relative;
 	top: 0;
@@ -87,7 +86,7 @@ select {
 }
 
 
-input {
+input.slider  {
 	position: relative;
 	top: 0;
 	left: 20px;
@@ -99,5 +98,30 @@ input {
 	transition: opacity .2s; */
 	cursor: pointer;
 }
+
+div.checkbox-header {
+	display: block;
+	color: white;
+}
+div.checkbox-container {
+	display: block;
+	color: white;
+}
+
+input.checkbox {
+	display: block;
+	position: relative;
+	top: 0;
+	left: 20px;
+	/* width: 120px;
+	height: auto; */
+	color: white;
+	padding: 5px 7px;
+	background: rgb(202, 202, 202);
+	color: black;
+	cursor: pointer;
+}
+
+
 
 

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
+	<head>
 		<title>New_Experiment</title>
 		
 		<script src="../js/three.js"></script>
 
 		<style></style>
-		<link rel="stylesheet" href="../src/geo.css">
+		<link rel="stylesheet" href="../src/panel.css">
     
-  </head>
+	</head>
 
-  <body>
+	<body>
 		<canvas id="canvas"></canvas>
 
 		<div id="button">Control Panel</div>
@@ -29,23 +29,6 @@
 			</span>
 
 			<span>
-				<label for="scale">scale</label>
-				<input class="slider" id="scale" type="range" min="50" max="200" value="100">
-			</span>
-
-			<span>
-				<label for="detail">detail</label>
-				<input class="slider" id="detail" type="range" min="15" max="30" value="20">
-			</span>
-
-			<span>
-				<label for="color">color</label>
-				<input class="slider" id="color" type="range" min="0" max="150000" value="80000">
-			</span>
-				
-			
-
-			<span>
 				<label for="material">Material</label>
 				<select id="material">
 					<option value="Mesh Lambert">Lambert</option>
@@ -56,6 +39,37 @@
 					<option value="Line Dashed">Line Dashed</option>
 				</select>
 			</span>
+
+			<span>
+				<label for="scale">scale</label>
+				<input class="slider" id="scale" type="range" min="50" max="200" value="100">
+			</span>
+
+			<span>
+				<label for="detail">detail</label>
+				<input class="slider" id="detail" type="range" min="15" max="30" value="20">
+			</span>
+
+			
+				<span>
+					<label>Lights</label>
+				</span>
+
+				<div class="checkbox-container" id="check">
+					<input class="checkbox" type="checkbox" name="Ambient Light" id="light1" checked> Ambient Light<br>
+					<input class="checkbox" type="checkbox" name="Point Light" id="light2" checked> Point Light<br>
+					<input class="checkbox" type="checkbox" name="Hemisphere Light" id="light3"> Hemisphere Light<br>
+				</div>
+
+
+			<span>
+				<label for="color">color</label>
+				<input class="slider" id="color" type="range" min="0" max="150000" value="80000">
+			</span>
+				
+			
+
+			
 			
 			<span id="close-button">Close Panel</div>
 				
@@ -67,7 +81,5 @@
 
 		<script src="main.js"></script>
 
-		
-		
-  </body>
+	</body>
 </html>

@@ -1,11 +1,7 @@
 
 class Geometry {
 
-	constructor(shape) {
-		this.shape = shape
-	}
-
-	setShape(shape, scale, detail) {
+	static setShape(shape, scale, detail) {
 		switch (shape) {
 			case "cube":
 				return new THREE.CubeGeometry(scale, scale, scale); // x y z
