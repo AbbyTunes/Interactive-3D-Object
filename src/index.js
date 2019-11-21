@@ -20,17 +20,10 @@ let camera = new THREE.PerspectiveCamera(35, maxWidth / maxHeight, 0.1, 3000);
 // init scene
 let scene = new THREE.Scene();
 
-// init light
-let light1 = new THREE.AmbientLight(0xffffff, 0.5);
-scene.add(light1);
-
-let light2 = new THREE.PointLight(0xffffff, 0.5);
-scene.add(light2);
-
 // first render
 fullRender();
 
-function clearObjectFromScene(name) {
+function clearObjectFromScene(scene, name) {
 	const selectedObject = scene.getObjectByName(name);
 	scene.remove(selectedObject);
 }
@@ -44,9 +37,13 @@ function fullRender() {
 	let color = model.color;
 	let offsetX = model.offsetX;
 	let offsetY = model.offsetY;
+	let lightArr = model.lightArr;
+	console.log(lightArr)
 
 	console.log(`previous ShapeName: ${ model.previousShapeName }`)
-	clearObjectFromScene(model.previousShapeName);
+	clearObjectFromScene(scene, model.previousShapeName);
+
+	Light.controlLight(scene, lightArr);
 
 	console.log(`shape before change: ${ Model.shapeName() }`);
 	let geometry = Geometry.setShape(Model.shapeName(), scale, detail);
@@ -92,6 +89,21 @@ let selectMaterial = document.getElementById("material");
 selectMaterial.addEventListener('change', () => {
 	fullRender();
 });
+
+let lightArr = document.getElementsByName("light");
+
+lightArr.forEach((light) => {
+	light.addEventListener('change', () => {
+		let lights = document.getElementsByName("light");
+		let length = lights.length;
+		for (let i = 0; i < length; i++) {
+			let light = lights[i];
+			Model.getModel().lightArr.set(light.id, light.checked);
+		}
+		fullRender();
+	});
+})
+
 
 let scaleSlider = document.getElementById("scale");
 scaleSlider.oninput = function () {

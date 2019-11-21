@@ -9,6 +9,10 @@ export default class Model {
 		this.offsetX = 0;
 		this.offsetY = 0;
 		this.previousShapeName = "cube"
+		this.lightArr = new Map();
+		this.lightArr.set("Ambient Light", false);
+		this.lightArr.set("Point Light", false);
+		this.lightArr.set("Hemisphere Light", false);
 	}
 
 	static shapeName() {

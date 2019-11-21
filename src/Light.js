@@ -1,47 +1,44 @@
 
-class Light {
+export default class Light {
 
-	constructor(lightId) {
-		this.lightId = lightId;
-	}
-
-	setLight(lightId, color1, color2, intensity) {
+	static setLight(lightId, color1, color2, intensity) {
 		let light;
 		switch (lightId) {
-			case "light1":
-				light = new THREE.AmbientLight(0xffffff, 0.5);
+			case "Ambient Light":
+				light = new THREE.AmbientLight(0xffffff, 1);
 				break;
-			case "light2":
-				light = new THREE.PointLight(0xffffff, 0.5, 100);
-			case "light3":
-				light = new THREE.HemisphereLight(0xffffff, 0x0808dd, 0.5);
+			case "Point Light":
+				light = new THREE.PointLight(0xffffff, 1, 100);
+			case "Hemisphere Light":
+				light = new THREE.HemisphereLight(0xffffff, 0x0808dd, 1);
 			default:
 				break;
 		}
-		light.name
+		light.name = lightId;
+		return light;
 	}
-}
 
-function controlLight() {
-	let lights = document.getElementsByName("checkbox");
-	console.log(light);
-	let length = lights.length;
-	for (let i = 0; i < length; i++) {
-		let light = lights[i];
-		if (light.checked) {
-			addLight(light);
-		} else {
-			removeLight(light);
-		}
+	static controlLight(scene, lightArr) {
+		for (let [key, value] of lightArr) {
+			if (value) {
+				Light.addLight(scene, key);
+			} else {
+				Light.removeLight(scene, key);
+			}
+		};
 	}
-}
 
-function addLight(light) {
-	scene.add(light);
-}
+	static addLight(scene, lightId) {
+		console.log("adding light")
+		let light = Light.setLight(lightId);
+		scene.add(light);
+	}
 
-function removeLight(light) {
-	clearObjectFromScene(light.name);
+	static removeLight(scene, lightId) {
+		console.log("removing light")
+		const selectedObject = scene.getObjectByName(lightId);
+		scene.remove(selectedObject);
+	}
 }
 
 // var new THREE.AmbientLight(0xffffff, 0.5); // intensity
