@@ -50,7 +50,7 @@ function fullRender() {
 
 	let scale = model.scale;
 	let detail = model.detail;
-	let color = model.color;
+	let objectColor = model.objectColor;
 	let offsetX = model.offsetX;
 	let offsetY = model.offsetY;
 	// let lightArr = model.lightArr;
@@ -71,7 +71,7 @@ function fullRender() {
 	let geometry = Geometry.setShape(Model.shapeName(), scale, detail);
 	model.previousShapeName = Model.shapeName();
 
-	let material = Material.setMaterial(Model.materialName(), color);
+	let material = Material.setMaterial(Model.materialName(), objectColor);
 	material.needsUpdate = true;
 	// console.log(`material after change: ${materialName}`)
 
@@ -99,9 +99,7 @@ function fullRender() {
 	let floorMaterial = new THREE.MeshLambertMaterial({ color: 0xd3d3d3 });
 	let floorMesh = new THREE.Mesh(floor, floorMaterial);
 	floorMesh.name = "floor";
-	let floorSwitch = document.getElementById("floor");
-	
-	if (floorSwitch.checked) {
+	if (Model.checkFloor()) {
 		floorMesh.rotation.x = -90 * Math.PI / 180;
 		floorMesh.position.y = -150;
 		scene.add(floorMesh);
@@ -113,7 +111,7 @@ function fullRender() {
 	// let spotLight = new THREE.SpotLight(0xffffff, 2.0, 30); // distance
 	// spotLight.name = "Spot Light";
 	// spotLight.target = mesh;
-	requestAnimationFrame(render);
+	// requestAnimationFrame(render); // keep
 
 	// let delta = 0;
 	// function render() {
@@ -126,6 +124,7 @@ function fullRender() {
 	// 	requestAnimationFrame(render);
 	// }
 
+	requestAnimationFrame(render); 
 	function render() {
 		mesh.rotation.x += 0.005;
 		mesh.rotation.y += 0.005;
@@ -157,11 +156,13 @@ detailSlider.oninput = function () {
 	fullRender();
 }
 
-let colorSlider = document.getElementById("color");
-colorSlider.oninput = function () {
-	Model.getModel().color = parseInt(this.value);
+let objectColor = document.getElementById("object-color");
+objectColor.addEventListener('input', () => {
+	Model.getModel().objectColor = this.value;
+	// Model.getModel().color = parseInt(this.value);
 	fullRender();
-}
+})
+
 
 let floorSwitch = document.getElementById("floor");
 floorSwitch.addEventListener("change", () => {

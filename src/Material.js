@@ -1,11 +1,11 @@
 class Material {
 
-	static setMaterial(material, color) {
+	static setMaterial(material, objectColor) {
 
 		switch (material) {
 			case "Mesh Lambert":
 				return new THREE.MeshLambertMaterial({
-					color: 0xF3FFE2,
+					color: objectColor,
 					side: THREE.FrontSide
 					// emissive: color,
 					// emissiveIntensity: 0.0
