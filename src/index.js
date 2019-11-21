@@ -1,5 +1,6 @@
 import Geometry from "./Geometry";
 import Material from "./Material";
+import toggleButton from "./toggleButton";
 
 var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
 renderer.setClearColor(0x000000);
@@ -149,4 +150,3 @@ colorSlider.oninput = function () {
 // 	// console.log(`shape after change: ${shapeName}`)
 // 	fullRender(geometry, material, shapeName);
 // });
-

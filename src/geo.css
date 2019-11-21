@@ -13,8 +13,35 @@ canvas {
 	background: black;
 }
 
-#panel {
+#button {
 	display: block;
+	position: absolute;
+	top: 20px;
+	left: 0;
+	width: 100px;
+	height: auto;
+	color: white;
+	padding: 5px 7px;
+	border: 1px solid white;
+	cursor: pointer;
+}
+
+#close-button {
+	position: relative;
+    top: 0;
+    left: 0;
+    margin-left: 0;
+    margin-top: 20px;
+    width: 95px;
+    height: auto;
+    color: white;
+    padding: 5px 8px;
+	border: 1px solid white;
+	cursor: pointer;
+}
+
+#panel {
+	display: none;
 	position: absolute;
 	top: 20px;
 	left: 0;
@@ -22,6 +49,10 @@ canvas {
 	height: auto;
 	padding: 20px 30px;
 	border: 1px solid white;
+	transition: all .5s;
+	animation: searchOpen .2s;
+    animation-delay: .3s;
+    animation-fill-mode: backwards;
 }
 
 span {
@@ -49,7 +80,7 @@ select {
 	width: 120px;
 	height: auto;
 	color: white;
-	padding: 5px 10px;
+	padding: 5px 7px;
 	background: rgb(202, 202, 202);
 	color: black;
 	cursor: pointer;
