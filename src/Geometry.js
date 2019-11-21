@@ -12,7 +12,7 @@ class Geometry {
 			case "sphere":
 				return new THREE.SphereGeometry(scale, detail, detail); // x detail detil
 			case "cone":
-				return new THREE.ConeGeometry(scale, 50, detail); // x y detail
+				return new THREE.ConeGeometry(scale, scale * 2, detail); // x y detail
 			case "octahedron":
 				return new THREE.OctahedronGeometry(scale, 0); // set
 			case "tetradron":
