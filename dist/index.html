@@ -7,17 +7,21 @@
 
 		<style></style>
 		<link rel="stylesheet" href="../src/panel.css">
-    
+		<link rel="stylesheet" href="../src/switch.css">
 	</head>
 
 	<body>
 		<canvas id="canvas"></canvas>
 
 		<div id="button">Control Panel</div>
+
 		<div id="panel">
-			<span>
-				<label for="shape">Geometry</label>
-				<select id="shape">
+			<div id="background"></div>
+
+			<div class="container">
+				<label for="shape" class="first-label">Geometry</label>
+				<div class="second-container">
+					<select id="shape">
 					<option value="cube">cube</option>
 					<option value="sphere">sphere</option>
 					<option value="cone">cone</option>
@@ -26,52 +30,78 @@
 					<option value="torus">torus</option>
 					<option value="torusKnot">torusKnot</option>
 				</select>
-			</span>
-
-			<span>
-				<label for="material">Material</label>
-				<select id="material">
-					<option value="Mesh Lambert">Lambert</option>
-					<option value="Mesh Standard">Metallic</option>
-					<option value="Mesh Normal">Rainbow</option>
-					<option value="Mesh Phong">Phong</option>
-					<option value="Line Basic">Line</option>
-					<option value="Line Dashed">Line Dashed</option>
-				</select>
-			</span>
-
-			<span>
-				<label for="scale">scale</label>
-				<input class="slider" id="scale" type="range" min="50" max="200" value="100">
-			</span>
-
-			<span>
-				<label for="detail">detail</label>
-				<input class="slider" id="detail" type="range" min="15" max="30" value="20">
-			</span>
-
-			
-				<span>
-					<label>Lights</label>
-				</span>
-
-				<div class="checkbox-container" id="check">
-					<input class="checkbox" type="checkbox" name="light" id="Ambient Light"> Ambient Light<br>
-					<input class="checkbox" type="checkbox" name="light" id="Point Light"> Point Light<br>
-					<input class="checkbox" type="checkbox" name="light" id="Hemisphere Light"> Hemisphere Light<br>
 				</div>
+				
+			</div>
+
+			<div class="container">
+				<label for="material">Material</label>
+				<div class="second-container">
+					<select id="material">
+						<option value="Mesh Lambert">Lambert</option>
+						<option value="Mesh Standard">Metallic</option>
+						<option value="Mesh Normal">Rainbow</option>
+						<option value="Mesh Phong">Phong</option>
+						<option value="Line Basic">Line</option>
+						<option value="Line Dashed">Line Dashed</option>
+					</select>
+				</div>
+			</div>
 
 
-			<span>
+			<div class="container">
+				<label for="scale">scale</label>
+				<div class="second-container">
+					<input class="slider" id="scale" type="range" min="50" max="200" value="100">
+				</div>
+			</div>
+
+			<div class="container">
+				<label for="detail">detail</label>
+				<div class="second-container">
+					<input class="slider" id="detail" type="range" min="15" max="30" value="20">
+				</div>
+			</div>
+
+			<div class="container">
+				<label for="">Lighting</label>
+				<div class="second-container">
+					<label class="switch">
+						<input type="checkbox" name="light" id="Hemisphere Light" checked>
+						<span class="switch-slider round"></span>
+					</label>
+				</div>
+			</div>
+
+			<div class="container">
+				<label for="">Floor</label>
+				<div class="second-container">
+					<label class="switch">
+						<input type="checkbox" name="floor" id="floor" checked>
+						<span class="switch-slider round"></span>
+					</label>
+				</div>
+			</div>
+
+			<!-- <div class="checkbox-container" id="check">
+				<input class="checkbox" type="checkbox" name="light" id="Hemisphere Light"> Hemisphere Light<br>
+				<input class="checkbox" type="checkbox" name="light" id="Ambient Light"> Ambient Light<br>
+				<input class="checkbox" type="checkbox" name="light" id="Point Light"> Point Light<br>
+				
+			</div> -->
+
+			<div class="container">
 				<label for="color">color</label>
-				<input class="slider" id="color" type="range" min="0" max="150000" value="80000">
-			</span>
+				<div class="second-container">
+					<input class="slider" id="color" type="range" min="0" max="150000" value="80000">
+				</div>
+			</div>
 				
 			
 
 			
 			
-			<span id="close-button">Close Panel</div>
+			<div id="close-button">Close Panel</div>
 				
 			
 		

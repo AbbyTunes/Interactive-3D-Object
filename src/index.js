@@ -2,6 +2,8 @@ import Model from "./Model";
 import Geometry from "./Geometry";
 import Material from "./Material";
 import Light from "./Light";
+import Lighting from "./Lighting";
+import toggleFloor from "./Floor";
 import toggleButton from "./toggleButton";
 
 
@@ -14,11 +16,21 @@ const maxHeight = window.innerHeight;
 renderer.setSize(maxWidth, maxHeight);
 
 // init camera
-let camera = new THREE.PerspectiveCamera(35, maxWidth / maxHeight, 0.1, 3000);
+let camera = new THREE.PerspectiveCamera(35, maxWidth / maxHeight, 300, 10000);
+
 // camera.position.set(0, 0, 0);
 
 // init scene
 let scene = new THREE.Scene();
+
+// add lights
+let light1 = new THREE.AmbientLight(0xffffff, 0.4);
+scene.add(light1);
+let light2 = new THREE.PointLight(0xffffff, 0.4);
+scene.add(light2);
+
+// init floor
+let floor = new THREE.PlaneGeometry(10000, 10000, 100, 100);
 
 // first render
 fullRender();
@@ -37,20 +49,25 @@ function fullRender() {
 	let color = model.color;
 	let offsetX = model.offsetX;
 	let offsetY = model.offsetY;
-	let lightArr = model.lightArr;
-	console.log(lightArr)
+	// let lightArr = model.lightArr;
+	// console.log(lightArr)
 
 	console.log(`previous ShapeName: ${ model.previousShapeName }`)
 	clearObjectFromScene(scene, model.previousShapeName);
 
-	Light.controlLight(scene, lightArr);
-
+	// Light.controlLight(scene, lightArr);
+	// let hemisphereLight = document.getElementById("Hemisphere Light");
+	// if (hemisphereLight.checked) {
+	// 	Lighting.addLight(scene);
+	// } else {
+	// 	Lighting.removeLight(scene);
+	// }
+	
 	console.log(`shape before change: ${ Model.shapeName() }`);
 	let geometry = Geometry.setShape(Model.shapeName(), scale, detail);
 	// Update previousShapeName so we can delete correctly next time.
 	model.previousShapeName = Model.shapeName();
 
-	// materialName = selectMaterial.options[selectMaterial.selectedIndex].value;
 	let material = Material.setMaterial(Model.materialName(), color);
 	material.needsUpdate = true;
 	// console.log(`material after change: ${materialName}`)
@@ -68,13 +85,24 @@ function fullRender() {
 
 	mesh.position.set(offsetX, offsetY, -1000);
 	mesh.name = Model.shapeName();
-
 	scene.add(mesh);
 
+	// add floor
+	// setFloor(scene);
+	
+	toggleFloor(scene, floor);
+
+	
+	// toggle Light;
+	// new Lighting();
+	// Lighting.toggleLight(scene);
+
+
 	requestAnimationFrame(render);
+
 	function render() {
-		mesh.rotation.x += 0.01;
-		mesh.rotation.y += 0.01;
+		mesh.rotation.x += 0.005;
+		mesh.rotation.y += 0.005;
 		renderer.render(scene, camera);
 		requestAnimationFrame(render);
 	}
@@ -90,19 +118,21 @@ selectMaterial.addEventListener('change', () => {
 	fullRender();
 });
 
-let lightArr = document.getElementsByName("light");
+// let lightArr = document.getElementsByName("light");
 
-lightArr.forEach((light) => {
-	light.addEventListener('change', () => {
-		let lights = document.getElementsByName("light");
-		let length = lights.length;
-		for (let i = 0; i < length; i++) {
-			let light = lights[i];
-			Model.getModel().lightArr.set(light.id, light.checked);
-		}
-		fullRender();
-	});
-})
+// lightArr.forEach((light) => {
+// 	light.addEventListener('change', () => {
+// 		let lights = document.getElementsByName("light");
+// 		let length = lights.length;
+// 		for (let i = 0; i < length; i++) {
+// 			let light = lights[i];
+// 			Model.getModel().lightArr.set(light.id, light.checked);
+// 		}
+// 		fullRender();
+// 	});
+// })
+
+
 
 
 let scaleSlider = document.getElementById("scale");
@@ -122,6 +152,26 @@ colorSlider.oninput = function () {
 	Model.getModel().color = parseInt(this.value);
 	fullRender();
 }
+
+let checkboxFloor = document.getElementById("floor");
+checkboxFloor.addEventListener("change", () => {
+	fullRender();
+})
+
+let toggleLight = document.getElementById("Hemisphere Light");
+toggleLight.addEventListener("click", () => {
+	if (toggleLight.checked) {
+		// toggleLight.checked = true;
+		let light = new THREE.HemisphereLight(0xffffff, 0x0808dd, 0.1);
+		scene.add(light);
+		fullRender();
+	} else {
+		return null
+		// toggleLight.checked = false;
+		// fullRender();
+	}
+})
+
 
 // const changeValue = (field) => {
 // 	document.getElementById(field).oninput = function() {
