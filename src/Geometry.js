@@ -1,6 +1,10 @@
 
 class Geometry {
 
+	static addText() {
+
+	}
+
 	static setShape(shape, scale, detail) {
 		switch (shape) {
 			case "cube":
@@ -19,6 +23,17 @@ class Geometry {
 				return new THREE.TorusGeometry(100, 20, detail, detail); // set z detail detail
 			case "torusKnot":
 				return new THREE.TorusKnotGeometry(scale, 20, 20, detail); // x z  set detail
+			case "text":
+				// return new THREE.TextGeometry("my text", {
+				// 	font: font,
+				// 	size: scale,
+				// 	height: 10,
+				// 	material: 0,
+				// 	bevelThickness: 1,
+				// 	extrudeMaterial: 1
+				// })
+			case "floor":
+				return 
 			default:
 				return new THREE.CubeGeometry(scale, scale, scale); // x y z
 		}

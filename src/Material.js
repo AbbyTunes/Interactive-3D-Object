@@ -5,33 +5,34 @@ class Material {
 		switch (material) {
 			case "Mesh Lambert":
 				return new THREE.MeshLambertMaterial({
-					color: color,
-					emissive: 0xff0000,
-					emissiveIntensity: 0.1
+					color: 0xF3FFE2,
+					side: THREE.FrontSide
+					// emissive: color,
+					// emissiveIntensity: 0.0
 				});
 			case "Mesh Standard":
 				return new THREE.MeshStandardMaterial({
-					color: color,
+					color: 0xF3FFE2,
 					roughness: 0.5,
 					metalness: 0.5
 				})
 			case "Mesh Phong":
 				return new THREE.MeshPhongMaterial({
-					color: color,
+					color: 0xF3FFE2,
 					specular: 0xff0000, // color2
-					shininess: 50
+					shininess: 30 // 50
 					// map: new THREE.TextureLoader().load('../src/img/wool.jpg')
 				})
 			case "Line Basic":
 				return new THREE.LineBasicMaterial({
-					color: color,
+					color: 0xF3FFE2,
 					linewidth: 3,
 					linecap: 'round',
 					linejoin: 'round'
 				});
 			case "Line Dashed":
 				return new THREE.LineDashedMaterial({
-					color: color,
+					color: 0xF3FFE2,
 					linewidth: 3,
 					scale: 3,
 					dashSize: 7,
@@ -45,12 +46,12 @@ class Material {
 					wireframeLinewidth: 5
 				});
 			case "Points":
-				return new THREE.PointsMaterial({ color: color })
+				return new THREE.PointsMaterial({ color: 0xF3FFE2 })
 			default:
 				return new THREE.MeshLambertMaterial({
-					color: color,
-					emissive: 0xff0000, // color2
-					emissiveIntensity: 0.1
+					color: 0xF3FFE2
+					// emissive: color,
+					// emissiveIntensity: 0.0
 				});
 		}
 	}

@@ -1,4 +1,4 @@
-html, body, canvas, div, span, label, select, option, input, p {
+html, body, canvas, div, label, select, option, input, p {
 	padding: 0px;
 	margin: 0px;
 	overflow: hidden;
@@ -30,8 +30,7 @@ canvas {
 	position: relative;
     top: 0;
     left: 0;
-    margin-left: 0;
-    margin-top: 20px;
+    margin: 20px 0;
     width: 95px;
     height: auto;
     color: white;
@@ -49,22 +48,39 @@ canvas {
 	height: auto;
 	padding: 20px 30px;
 	border: 1px solid white;
-	/* transition: all .5s;
-	animation: searchOpen .2s;
-    animation-delay: .3s;
-    animation-fill-mode: backwards; */
+	z-index: 200px;
 }
 
-span {
+#modal {
+	display: none;
+	width: 100%;
+	height: 100%;
+	z-index: 100px;
+	background: black;
+	opacity: 0.5;
+}
+
+div.container {
 	display: flex;
-	margin: 12px auto;
-	border: 1px solid rgb(61, 61, 61);
-}
-
-label {
 	position: relative;
 	top: 0;
 	left: 0;
+	width: 100%;
+	margin: 12px auto;
+	/* border: 1px solid rgb(61, 61, 61); */
+}
+
+div.second-container {
+	display: block;
+	position: relative;
+	top: 0;
+	left: 20px;
+	width: 120px;
+	height: auto;
+	/* border: 1px solid rgb(155, 155, 155); */
+}
+
+label {
 	width: 90px;
 	height: auto;
 	padding: 5px 10px;
@@ -73,6 +89,15 @@ label {
 }
 
 select {
+	width: 100%;
+	color: white;
+	padding: 5px 7px;
+	background: rgb(202, 202, 202);
+	color: black;
+	cursor: pointer;
+}
+
+/* input.text {
 	position: relative;
 	top: 0;
 	left: 20px;
@@ -82,20 +107,14 @@ select {
 	padding: 5px 7px;
 	background: rgb(202, 202, 202);
 	color: black;
-	cursor: pointer;
-}
+} */
 
 
 input.slider  {
-	position: relative;
-	top: 0;
-	left: 20px;
-	width: 120px;
-	height: auto;
+	width: 100%;
+	height: 100%;
 	-webkit-appearance: none; 
 	background: rgb(89, 146, 211);
-	/* -webkit-transition: .2s;
-	transition: opacity .2s; */
 	cursor: pointer;
 }
 
