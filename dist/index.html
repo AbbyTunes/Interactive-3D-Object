@@ -4,7 +4,6 @@
 		<title>New_Experiment</title>
 		
 		<script src="../js/three.js"></script>
-		<script src="../js/WebGL.js"></script>
 
 		<style></style>
 		<link rel="stylesheet" href="../src/geo.css">
@@ -21,12 +20,31 @@
 					<option value="cube">cube</option>
 					<option value="sphere">sphere</option>
 					<option value="cone">cone</option>
-					<option value="octahedron">octahedron</option>
 					<option value="tetradron">tetradron</option>
+					<option value="octahedron">octahedron</option>
 					<option value="torus">torus</option>
 					<option value="torusKnot">torusKnot</option>
 				</select>
 			</span>
+
+			<span>
+				<label for="scale">scale</label>
+				<input class="slider" id="scale" type="range" min="50" max="200" value="100">
+			</span>
+
+			<span>
+				<label for="detail">detail</label>
+				<input class="slider" id="detail" type="range" min="10" max="20" value="15">
+			</span>
+
+			
+
+			<span>
+				<label for="color">color</label>
+				<input class="slider" id="color" type="range" min="0" max="150000" value="80000">
+			</span>
+				
+			
 
 			<span>
 				<label for="material">Material</label>
