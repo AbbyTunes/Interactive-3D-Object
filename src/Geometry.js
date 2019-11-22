@@ -20,9 +20,9 @@ class Geometry {
 			// case "icosahedron":
 			// 	return new THREE.IcosahedronGeometry(100, 30, 16, 100);
 			case "torus":
-				return new THREE.TorusGeometry(100, 20, detail, detail); // set z detail detail
+				return new THREE.TorusGeometry(100, 30, detail, detail); // set z detail detail
 			case "torusKnot":
-				return new THREE.TorusKnotGeometry(scale, 20, 20, detail); // x z  set detail
+				return new THREE.TorusKnotGeometry(scale, 30, 20, detail); // x z  set detail
 			case "text":
 				// return new THREE.TextGeometry("my text", {
 				// 	font: font,

@@ -158,8 +158,8 @@ detailSlider.oninput = function () {
 
 let objectColor = document.getElementById("object-color");
 objectColor.addEventListener('input', () => {
-	Model.getModel().objectColor = this.value;
-	// Model.getModel().color = parseInt(this.value);
+	Model.getModel().objectColor = objectColor.value;
+	// Model.getModel().objectColor = parseInt(this.value);
 	fullRender();
 })
 
