@@ -6,16 +6,20 @@ export default class Model {
 		this.scale = 100;
 		this.detail = 20;
 		this.objectColor = 0xF3FFE2;
-		this.emissiveColor = 0;
+		this.emissiveColor = 0xffffff;
+		this.specularColor = 0x0808dd;
+		this.intensity = 0.3;
 		this.offsetX = 0;
 		this.offsetY = 0;
-        this.previousShapeName = "cube"
-        this.extraLight = false
+        this.previousShapeName = "cube";
+		this.hemisphereLight = false;
+		this.spotLight = false;
+		this.floor = false;
 		// this.lightArr = new Map();
 		// this.lightArr.set("Ambient Light", false);
 		// this.lightArr.set("Point Light", false);
 		// this.lightArr.set("Hemisphere Light", false);
-		this.floor = false;
+		
 	}
 
 	static shapeName() {
@@ -33,10 +37,25 @@ export default class Model {
 		return checkFloor.checked;
 	}
 
-	static getObjectColor() {
-		let objectColor = document.getElementById("object-color");
-		return objectColor.value;
+	static checkHemisphereLight() {
+		let checkLight = document.getElementById("Hemisphere-Light");
+		return checkLight.checked;
 	}
+
+	// static getObjectColor() {
+	// 	let objectColor = document.getElementById("object-color");
+	// 	return objectColor.value;
+	// }
+
+	// static getEmissiveColor() {
+	// 	let emissiveColor = document.getElementById("emissive-color");
+	// 	return emissiveColor.value;
+	// }
+
+	// static getSpecularColor() {
+	// 	let specularColor = document.getElementById("specular-color");
+	// 	return specularColor.value;
+	// }
 
 	static getModel() {
 		if (singletonModelInstance === null) {

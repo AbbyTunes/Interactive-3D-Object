@@ -24,9 +24,9 @@ let camera2 = new THREE.OrthographicCamera(-1500, 1500, 1500, -1500, 0.1, 10000)
 let scene = new THREE.Scene();
 
 // add lights
-let light1 = Light.setLight("Ambient Light", 0xffffff, "ambient-light");
+let light1 = Light.setLight("Ambient-Light", 0xffffff, 0.3);
 scene.add(light1);
-let light2 = Light.setLight("Point Light", 0xffffff, "point-light"); // 600
+let light2 = Light.setLight("Point-Light", 0xffffff, 0.3); // distance: 600
 scene.add(light2);
 
 // init floor
@@ -52,19 +52,10 @@ function fullRender() {
 	let objectColor = model.objectColor;
 	let offsetX = model.offsetX;
 	let offsetY = model.offsetY;
-	let extraLight = model.extraLight;
-	// console.log(lightArr)
+	let hemisphereLight = model.hemisphereLight;
 
 	// console.log(`previous ShapeName: ${ model.previousShapeName }`)
 	clearObjectFromScene(scene, model.previousShapeName);
-
-	Light.controlLight(scene, extraLight);
-	// let hemisphereLight = document.getElementById("Hemisphere Light");
-	// if (hemisphereLight.checked) {
-	// 	Lighting.addLight(scene);
-	// } else {
-	// 	Lighting.removeLight(scene);
-	// }
 	
 	// console.log(`shape before change: ${ Model.shapeName() }`);
 	let geometry = Geometry.setShape(Model.shapeName(), scale, detail);
@@ -89,9 +80,8 @@ function fullRender() {
 	mesh.name = Model.shapeName();
 	scene.add(mesh);
 
-	// toggle Light
-	// new Lighting();
-	// Lighting.toggleLight(scene);
+	// add light
+	Light.controlHemisphereLight(scene, hemisphereLight, model.emissiveColor, model.specularColor, model.intensity);
 
 	// toggle Floor
 	let floor = new THREE.PlaneGeometry(10000, 10000, 100, 100);
@@ -155,23 +145,51 @@ detailSlider.oninput = function () {
 	fullRender();
 }
 
+let metalnessSlider = document.getElementById("metalness");
+metalnessSlider.oninput = function () {
+	Model.getModel().metalness = this.value;
+	fullRender();
+}
+
+let roughnessSlider = document.getElementById("roughness");
+roughnessSlider.oninput = function () {
+	Model.getModel().roughness = this.value;
+	fullRender();
+}
+
+let intensitySlider = document.getElementById("intensity");
+intensitySlider.oninput = function () {
+	Model.getModel().intensity = this.value;
+	fullRender();
+}
+
 let objectColor = document.getElementById("object-color");
 objectColor.addEventListener('input', () => {
 	Model.getModel().objectColor = objectColor.value;
-	// Model.getModel().objectColor = parseInt(this.value);
 	fullRender();
 })
 
+let emissiveColor = document.getElementById("emissive-color");
+emissiveColor.addEventListener('input', () => {
+	Model.getModel().emissiveColor = emissiveColor.value;
+	fullRender();
+})
+
+let specularColor = document.getElementById("specular-color");
+specularColor.addEventListener('input', () => {
+	Model.getModel().specularColor = specularColor.value;
+	fullRender();
+})
 
 let floorSwitch = document.getElementById("floor");
 floorSwitch.addEventListener("change", () => {
 	fullRender();
 })
 
-let toggleLight = document.getElementById("Hemisphere-Light");
-toggleLight.addEventListener("click", () => {
+let toggleHemisphereLight = document.getElementById("Hemisphere-Light");
+toggleHemisphereLight.addEventListener("click", () => {
 	//let light = new THREE.HemisphereLight(0xffffff, 0x0808dd, 0.1);
-	Model.getModel().extraLight = toggleLight.checked;
+	Model.getModel().hemisphereLight = toggleHemisphereLight.checked;
 	fullRender();
 })
 

@@ -1,25 +1,25 @@
 class Material {
 
-	static setMaterial(material, objectColor) {
+	static setMaterial(material, objectColor, emissiveColor = 0xe0cdac, intensity = 0.4, metalness, roughness) {
 
 		switch (material) {
 			case "Mesh Lambert":
 				return new THREE.MeshLambertMaterial({
-					color: objectColor,
-					side: THREE.FrontSide
-					// emissive: color,
-					// emissiveIntensity: 0.0
+					color: objectColor
+					// side: THREE.FrontSide,
+					// emissive: emissiveColor,
+					// emissiveIntensity: intensity
 				});
 			case "Mesh Standard":
 				return new THREE.MeshStandardMaterial({
 					color: objectColor,
-					roughness: 0.5,
-					metalness: 0.5
+					roughness: roughness,
+					metalness: metalness
 				})
 			case "Mesh Phong":
 				return new THREE.MeshPhongMaterial({
 					color: objectColor,
-					specular: 0xff0000, // color2
+					// specular: emissiveColor,
 					shininess: 30 // 50
 					// map: new THREE.TextureLoader().load('../src/img/wool.jpg')
 				})
