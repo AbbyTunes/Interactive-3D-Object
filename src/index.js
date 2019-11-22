@@ -2,7 +2,6 @@ import Model from "./Model";
 import Geometry from "./Geometry";
 import Material from "./Material";
 import Light from "./Light";
-import Lighting from "./Lighting";
 // import toggleFloor from "./Floor";
 import toggleButton from "./toggleButton";
 
@@ -25,9 +24,9 @@ let camera2 = new THREE.OrthographicCamera(-1500, 1500, 1500, -1500, 0.1, 10000)
 let scene = new THREE.Scene();
 
 // add lights
-let light1 = new THREE.AmbientLight(0xffffff, 0.5);
+let light1 = Light.setLight("Ambient Light", 0xffffff, "ambient-light");
 scene.add(light1);
-let light2 = new THREE.PointLight(0xffffff, 0.5); // 600
+let light2 = Light.setLight("Point Light", 0xffffff, "point-light"); // 600
 scene.add(light2);
 
 // init floor
@@ -53,13 +52,13 @@ function fullRender() {
 	let objectColor = model.objectColor;
 	let offsetX = model.offsetX;
 	let offsetY = model.offsetY;
-	// let lightArr = model.lightArr;
+	let extraLight = model.extraLight;
 	// console.log(lightArr)
 
 	// console.log(`previous ShapeName: ${ model.previousShapeName }`)
 	clearObjectFromScene(scene, model.previousShapeName);
 
-	// Light.controlLight(scene, lightArr);
+	Light.controlLight(scene, extraLight);
 	// let hemisphereLight = document.getElementById("Hemisphere Light");
 	// if (hemisphereLight.checked) {
 	// 	Lighting.addLight(scene);
@@ -171,16 +170,9 @@ floorSwitch.addEventListener("change", () => {
 
 let toggleLight = document.getElementById("Hemisphere-Light");
 toggleLight.addEventListener("click", () => {
-	if (toggleLight.checked) {
-		// toggleLight.checked = true;
-		let light = new THREE.HemisphereLight(0xffffff, 0x0808dd, 0.1);
-		scene.add(light);
-		fullRender();
-	} else {
-		return null
-		// toggleLight.checked = false;
-		// fullRender();
-	}
+	//let light = new THREE.HemisphereLight(0xffffff, 0x0808dd, 0.1);
+	Model.getModel().extraLight = toggleLight.checked;
+	fullRender();
 })
 
 // let lightArr = document.getElementsByName("light");

@@ -9,7 +9,8 @@ export default class Model {
 		this.emissiveColor = 0;
 		this.offsetX = 0;
 		this.offsetY = 0;
-		this.previousShapeName = "cube"
+        this.previousShapeName = "cube"
+        this.extraLight = false
 		// this.lightArr = new Map();
 		// this.lightArr.set("Ambient Light", false);
 		// this.lightArr.set("Point Light", false);

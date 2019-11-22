@@ -1,7 +1,8 @@
+let extraLightName = "extra-light";
+
 
 export default class Light {
-
-	static setLight(lightId, intensity, color, color2) {
+	static setLight(lightId, color, name) {
 		let light;
 		switch (lightId) {
 			case "Ambient Light":
@@ -9,34 +10,34 @@ export default class Light {
 				break;
 			case "Point Light":
 				light = new THREE.PointLight(color, 0.5);
+				break;
 			case "Hemisphere Light":
 				light = new THREE.HemisphereLight(color, 0x0808dd, 0.3);
+				break;
 			default:
 				break;
 		}
-		light.name = lightId;
+		light.name = name;
 		return light;
 	}
 
-	static controlLight(scene, lightArr) {
-		for (let [key, value] of lightArr) {
-			if (value) {
-				Light.addLight(scene, key);
-			} else {
-				Light.removeLight(scene, key);
-			}
-		};
+	static controlLight(scene, turnOnLight) {
+		if (turnOnLight) {
+			Light.addLight(scene, "Hemisphere Light", 0xffffff, extraLightName, );
+		} else {
+			Light.removeLight(scene, extraLightName);
+		}
 	}
 
-	static addLight(scene, lightId) {
+	static addLight(scene, lightId, color, name) {
 		console.log("adding light")
-		let light = Light.setLight(lightId);
+		let light = Light.setLight(lightId, color, name);
 		scene.add(light);
 	}
 
-	static removeLight(scene, lightId) {
+	static removeLight(scene, name) {
 		console.log("removing light")
-		const selectedObject = scene.getObjectByName(lightId);
+		const selectedObject = scene.getObjectByName(name);
 		scene.remove(selectedObject);
 	}
 }
