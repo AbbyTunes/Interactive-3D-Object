@@ -35,7 +35,7 @@ export default class Light {
 	static controlShadows(scene, turnOnShadows, mesh) {
 		let name = "spotlight"
 		if (turnOnShadows) {
-			let spotlight = Light.setLight("Spot-Light", 0xffffff);
+			let spotlight = Light.setLight("Spot-Light", 0xffffff, 0.5);
 			spotlight.target = mesh;
 			spotlight.position.y = 250;
 			spotlight.position.x = 505;

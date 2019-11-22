@@ -1,6 +1,6 @@
 class Material {
 
-	static setMaterial(material, objectColor, emissiveColor = 0xe0cdac, intensity = 0.4, metalness, roughness) {
+	static setMaterial(material, objectColor, emissiveColor = 0xe0cdac, intensity = 0.4, metalness = 0.5, roughness = 0.5) {
 
 		switch (material) {
 			case "Mesh Lambert":
