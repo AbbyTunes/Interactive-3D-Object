@@ -50,23 +50,30 @@
 
 
 			<div class="container">
-				<label for="scale">Scale</label>
+				<label for="scale">scale</label>
 				<div class="second-container">
 					<input class="slider" id="scale" type="range" min="50" max="250" value="100">
 				</div>
 			</div>
 
-			<!-- <div class="container">
-				<label for="scale">scale</label>
-				<div class="second-container">
-					<input class="slider" id="scale" type="range" min="50" max="200" value="100">
-				</div>
-			</div> -->
-
 			<div class="container">
 				<label for="detail">detail</label>
 				<div class="second-container">
 					<input class="slider" id="detail" type="range" min="5" max="20" value="10">
+				</div>
+			</div>
+
+			<div class="container">
+				<label for="metalness">metalness</label>
+				<div class="second-container">
+					<input class="slider" id="metalness" type="range" min="0.1" max="0.9" value="0.5">
+				</div>
+			</div>
+
+			<div class="container">
+				<label for="roughness">roughness</label>
+				<div class="second-container">
+					<input class="slider" id="roughness" type="range" min="0.1" max="0.9" value="0.5">
 				</div>
 			</div>
 
@@ -79,13 +86,6 @@
 					</label>
 				</div>
 			</div>
-
-			<!-- <div class="checkbox-container" id="check">
-				<input class="checkbox" type="checkbox" name="light" id="Hemisphere Light"> Hemisphere Light<br>
-				<input class="checkbox" type="checkbox" name="light" id="Ambient Light"> Ambient Light<br>
-				<input class="checkbox" type="checkbox" name="light" id="Point Light"> Point Light<br>
-				
-			</div> -->
 
 			<div class="container">
 				<label for="">Lighting</label>
@@ -112,9 +112,16 @@
 			</div>
 
 			<div class="container">
-				<label for="object-color">object color</label>
+				<label for="object-color">specular color</label>
 				<div class="second-container">
 					<input type="color" class='color' name='colorSelect' id='object-color' />
+				</div>
+			</div>
+
+			<div class="container">
+				<label for="intensity">intensity</label>
+				<div class="second-container">
+					<input class="slider" id="intensity" type="range" min="0.1" max="0.9" value="0.5">
 				</div>
 			</div>
 
