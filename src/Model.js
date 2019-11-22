@@ -9,8 +9,8 @@ export default class Model {
 		this.roughness = 0.5;
 		this.objectColor = 0xF3FFE2;
 		this.emissiveColor = 0xffffff;
-		this.specularColor = 0x0808dd;
-		this.intensity = 0.3;
+		this.specularColor = 0xffffff;
+		this.intensity = 0.5;
 		this.offsetX = 0;
 		this.offsetY = 0;
         this.previousShapeName = "cube";

@@ -2,9 +2,7 @@ import Model from "./Model";
 import Geometry from "./Geometry";
 import Material from "./Material";
 import Light from "./Light";
-// import toggleFloor from "./Floor";
 import toggleButton from "./toggleButton";
-
 
 var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
 renderer.setClearColor(0x000000);
@@ -19,7 +17,6 @@ renderer.setSize(maxWidth, maxHeight);
 // init camera
 let camera1 = new THREE.PerspectiveCamera(35, maxWidth / maxHeight, 300, 10000);
 let camera2 = new THREE.OrthographicCamera(-1500, 1500, 1500, -1500, 0.1, 10000);
-
 // camera.position.set(0, 0, 0);
 
 // init scene
@@ -68,9 +65,9 @@ function fullRender() {
 	let intensity = model.intensity;
 	let offsetX = model.offsetX;
 	let offsetY = model.offsetY;
-	let hemisphereLight = model.hemisphereLight;
-    let spotLight = model.spotLight;
-	let floor = model.spotLight;
+	let isHemisphere = model.hemisphereLight;
+    let isSpotLight = model.spotLight;
+	let isFloor = model.floor;
 
 	// console.log(`previous ShapeName: ${ model.previousShapeName }`)
 	clearObjectFromScene(scene, model.previousShapeName);
@@ -94,14 +91,15 @@ function fullRender() {
 		mesh = new THREE.Mesh(geometry, material);
 	}
 
-	mesh.position.set(0, -50, -500);
+	mesh.position.set(0, 0, -500);
 	mesh.name = Model.shapeName();
 
 	// add light
-	Light.controlHemisphereLight(scene, hemisphereLight, emissiveColor, specularColor, intensity);
+	Light.controlHemisphereLight(scene, isHemisphere, emissiveColor, intensity, specularColor);
 
 	// toggle Floor
 	clearObjectFromScene(scene, "floor");
+
 	let floorMesh = null;
 	if (Model.checkFloor()) {
 		let floor = new THREE.PlaneGeometry(10000, 10000, 100, 100);
@@ -109,34 +107,18 @@ function fullRender() {
 		floorMesh = new THREE.Mesh(floor, floorMaterial);
 		floorMesh.name = "floor";
 		floorMesh.rotation.x = -90 * Math.PI / 180;
-		floorMesh.position.y = -150;
+		floorMesh.position.y = -100;
 	}
 
-	Light.controlShadows(scene, Model.checkFloor(), mesh);
-
-
+	Light.controlShadows(scene, Model.checkFloor(), mesh, emissiveColor, intensity);
+	
 	if (Model.checkFloor()) {
 		floorMesh.receiveShadow = true;
 		scene.add(floorMesh);
 	}
+
 	mesh.castShadow = true;
 	scene.add(mesh);
-	// add spotlight
-	// let spotLight = new THREE.SpotLight(0xffffff, 2.0, 30); // distance
-	// spotLight.name = "Spot Light";
-	// spotLight.target = mesh;
-	// requestAnimationFrame(render); // keep
-
-	// let delta = 0;
-	// function render() {
-	// 	delta += 0.01;
-	// 	camera2.lookAt(spotLight.position);
-
-	// 	camera2.position.x = Math.sin(delta) * 5000;
-	// 	camera2.position.z = Math.cos(delta) * 5000;
-	// 	renderer.render(scene, camera2);
-	// 	requestAnimationFrame(render);
-	// }
 
 	requestAnimationFrame(render); 
 	function render() {
@@ -172,19 +154,19 @@ detailSlider.oninput = function () {
 
 let metalnessSlider = document.getElementById("metalness");
 metalnessSlider.oninput = function () {
-	Model.getModel().metalness = this.value * 0.1 / 10;
+	Model.getModel().metalness = this.value * 1.0 / 10;
 	fullRender();
 }
 
 let roughnessSlider = document.getElementById("roughness");
 roughnessSlider.oninput = function () {
-	Model.getModel().roughness = this.value * 0.1 / 10;
+	Model.getModel().roughness = this.value * 1.0 / 10;
 	fullRender();
 }
 
 let intensitySlider = document.getElementById("intensity");
 intensitySlider.oninput = function () {
-	Model.getModel().intensity = this.value * 0.1 / 10;
+	Model.getModel().intensity = this.value * 1.0;
 	fullRender();
 }
 
@@ -209,7 +191,6 @@ specularColor.addEventListener('input', () => {
 
 let toggleHemisphereLight = document.getElementById("Hemisphere-Light");
 toggleHemisphereLight.addEventListener("click", () => {
-	//let light = new THREE.HemisphereLight(0xffffff, 0x0808dd, 0.1);
 	Model.getModel().hemisphereLight = toggleHemisphereLight.checked;
 	fullRender();
 });
@@ -218,31 +199,3 @@ let floorSwitch = document.getElementById("floor");
 floorSwitch.addEventListener("change", () => {
 	fullRender();
 });
-
-
-// let lightArr = document.getElementsByName("light");
-
-// lightArr.forEach((light) => {
-// 	light.addEventListener('change', () => {
-// 		let lights = document.getElementsByName("light");
-// 		let length = lights.length;
-// 		for (let i = 0; i < length; i++) {
-// 			let light = lights[i];
-// 			Model.getModel().lightArr.set(light.id, light.checked);
-// 		}
-// 		fullRender();
-// 	});
-// })
-
-
-// const changeValue = (field) => {
-// 	document.getElementById(field).oninput = function() {
-// 		let [field] = this.value;
-// 		fullRender(field);
-// 	}
-// }
-
-// update(field) {
-// 	return e => this.setState({ [field]: e.target.value });
-// }
-

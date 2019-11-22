@@ -1,15 +1,15 @@
 let hemisphereLight = "Hemisphere-Light";
-
+let spotLight = "Spot-Light";
 
 export default class Light {
-	static setLight(lightId, emissiveColor = 0xffffff, specularColor=0x0808dd, intensity=0.4) {
+	static setLight(lightId, emissiveColor=0xffffff, intensity=0.5 , specularColor=0xffffff) {
 		let light;
 		switch (lightId) {
 			case "Ambient-Light":
-				light = new THREE.AmbientLight(emissiveColor, intensity);
+				light = new THREE.AmbientLight(emissiveColor, 0.5);
 				break;
 			case "Point-Light":
-				light = new THREE.PointLight(emissiveColor, intensity);
+				light = new THREE.PointLight(emissiveColor, 0.5);
 				break;
 			case "Hemisphere-Light":
 				light = new THREE.HemisphereLight(emissiveColor, specularColor, intensity);
@@ -25,19 +25,25 @@ export default class Light {
 		return light;
 	}
 
-	static controlHemisphereLight(scene, turnOnLight, emissiveColor = 0xffffff, specularColor = 0x0808dd, intensity = 0.2) {
+	static controlHemisphereLight(scene, turnOnLight, emissiveColor, intensity, specularColor) {
 		Light.removeLight(scene, "Hemisphere-Light");
 		if (turnOnLight) {
-			Light.addLight(scene, "Hemisphere-Light", emissiveColor, specularColor, intensity);
+			intensity = intensity / 20;
+			console.log(intensity)
+			Light.addLight(scene, "Hemisphere-Light", emissiveColor, intensity, specularColor);
 		}
 	}
 
-	static controlShadows(scene, turnOnShadows, mesh) {
-		let name = "spotlight"
+	static controlShadows(scene, turnOnShadows, mesh, emissiveColor, intensity) {
+		let name = "Spot-Light";
+
 		if (turnOnShadows) {
-			let spotlight = Light.setLight("Spot-Light", 0xffffff, 0.5);
+			this.removeLight(scene, name);
+			intensity /= 10;
+			console.log(intensity)
+			let spotlight = Light.setLight("Spot-Light", emissiveColor, intensity);
 			spotlight.target = mesh;
-			spotlight.position.y = 250;
+			spotlight.position.y = 300;
 			spotlight.position.x = 505;
 			spotlight.castShadow = true;
 			spotlight.shadow = new THREE.LightShadow(new THREE.PerspectiveCamera(100, 1, 500, 1000));
@@ -50,8 +56,8 @@ export default class Light {
 		}
 	}
 
-	static addLight(scene, lightId, emissiveColor=0xffffff, specularColor = 0x0808dd, intensity = 0.2) {
-		let light = Light.setLight(lightId, emissiveColor, specularColor, intensity);
+	static addLight(scene, lightId, emissiveColor, intensity, specularColor) {
+		let light = Light.setLight(lightId, emissiveColor, intensity, specularColor);
 		scene.add(light);
 	}
 
@@ -61,41 +67,6 @@ export default class Light {
 	}
 }
 
-
-
-// var new THREE.AmbientLight(0xffffff, 0.5); // intensity
-// light1.name = "Ambient Light";
-
-// var light2 = new THREE.PointLight(0xffffff, 0.5, 100); // distance
-// light2.name = "Point Light";
-
-// var light3 = new THREE.HemisphereLight(0xffffff, 0x0808dd, 0.5);
-// light3.name = "Hemisphere Light";
-
-
 // var light3 = new THREE.DirectionalLight(0xffffff, 0.5);
 // light3.name = "Directional Light";
 // // light3.target = mesh;
-
-// var light4 = new THREE.SpotLight(0xffffff, 2.0, 100); // distance
-// light4.name = "Spot Light";
-// // light4.target = mesh;
-
-
-	// add spotlight
-
-	// renderer.shadowMap.enabled = true;
-	// renderer.shadowMap.type = THREE.PCFShadowMap;
-
-	// let light4 = new THREE.SpotLight(0xFFFFFF, 0.5, 3000);
-	// light4.position.y = 100;
-	// light4.target = mesh;
-
-	// light4.castShadow = true;
-	// light4.shadow = new THREE.LightShadow(new THREE.PerspectiveCamera(100, 1, 500, 1000));
-	// light4.shadow.bias = 0.0001;
-	// light4.shadow.mapSize.width = 2048 * 2;
-	// light4.shadow.mapSize.height = 2048 * 2;
-	// scene.add(light4);
-	// mesh.castShadow = true;
-	// floorMesh.receiveShadow = true;
