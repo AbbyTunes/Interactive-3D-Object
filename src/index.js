@@ -60,10 +60,17 @@ function fullRender() {
 
 	let scale = model.scale;
 	let detail = model.detail;
+	let metalness = model.metalness;
+	let roughness = model.roughness;
 	let objectColor = model.objectColor;
+	let emissiveColor = model.emissiveColor;
+	let specularColor = model.specularColor;
+	let intensity = model.intensity;
 	let offsetX = model.offsetX;
 	let offsetY = model.offsetY;
 	let hemisphereLight = model.hemisphereLight;
+    let spotLight = model.spotLight;
+	let floor = model.spotLight;
 
 	// console.log(`previous ShapeName: ${ model.previousShapeName }`)
 	clearObjectFromScene(scene, model.previousShapeName);
@@ -72,7 +79,7 @@ function fullRender() {
 	let geometry = Geometry.setShape(Model.shapeName(), scale, detail);
 	model.previousShapeName = Model.shapeName();
 
-	let material = Material.setMaterial(Model.materialName(), objectColor);
+	let material = Material.setMaterial(Model.materialName(), objectColor, emissiveColor, intensity, metalness, roughness);
 	material.needsUpdate = true;
 	// console.log(`material after change: ${materialName}`)
 
@@ -91,7 +98,7 @@ function fullRender() {
 	mesh.name = Model.shapeName();
 
 	// add light
-	Light.controlHemisphereLight(scene, hemisphereLight, model.emissiveColor, model.specularColor, model.intensity);
+	Light.controlHemisphereLight(scene, hemisphereLight, emissiveColor, specularColor, intensity);
 
 	// toggle Floor
 	clearObjectFromScene(scene, "floor");
@@ -165,19 +172,19 @@ detailSlider.oninput = function () {
 
 let metalnessSlider = document.getElementById("metalness");
 metalnessSlider.oninput = function () {
-	Model.getModel().metalness = this.value;
+	Model.getModel().metalness = this.value * 0.1 / 10;
 	fullRender();
 }
 
 let roughnessSlider = document.getElementById("roughness");
 roughnessSlider.oninput = function () {
-	Model.getModel().roughness = this.value;
+	Model.getModel().roughness = this.value * 0.1 / 10;
 	fullRender();
 }
 
 let intensitySlider = document.getElementById("intensity");
 intensitySlider.oninput = function () {
-	Model.getModel().intensity = this.value;
+	Model.getModel().intensity = this.value * 0.1 / 10;
 	fullRender();
 }
 
@@ -199,17 +206,19 @@ specularColor.addEventListener('input', () => {
 	fullRender();
 })
 
-let floorSwitch = document.getElementById("floor");
-floorSwitch.addEventListener("change", () => {
-	fullRender();
-})
 
 let toggleHemisphereLight = document.getElementById("Hemisphere-Light");
 toggleHemisphereLight.addEventListener("click", () => {
 	//let light = new THREE.HemisphereLight(0xffffff, 0x0808dd, 0.1);
 	Model.getModel().hemisphereLight = toggleHemisphereLight.checked;
 	fullRender();
-})
+});
+
+let floorSwitch = document.getElementById("floor");
+floorSwitch.addEventListener("change", () => {
+	fullRender();
+});
+
 
 // let lightArr = document.getElementsByName("light");
 
