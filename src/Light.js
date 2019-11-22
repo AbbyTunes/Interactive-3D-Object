@@ -1,43 +1,44 @@
-let extraLightName = "extra-light";
+let hemisphereLight = "Hemisphere-Light";
 
 
 export default class Light {
-	static setLight(lightId, color, name) {
+	static setLight(lightId, emissiveColor = 0xffffff, specularColor=0x0808dd, intensity=0.4) {
 		let light;
 		switch (lightId) {
-			case "Ambient Light":
-				light = new THREE.AmbientLight(color, 0.5);
+			case "Ambient-Light":
+				light = new THREE.AmbientLight(emissiveColor, intensity);
 				break;
-			case "Point Light":
-				light = new THREE.PointLight(color, 0.5);
+			case "Point-Light":
+				light = new THREE.PointLight(emissiveColor, intensity);
 				break;
-			case "Hemisphere Light":
-				light = new THREE.HemisphereLight(color, 0x0808dd, 0.3);
+			case "Hemisphere-Light":
+				light = new THREE.HemisphereLight(emissiveColor, specularColor, intensity);
+				break;
+			case "Spot-Light":
+				light = new THREE.SpotLight(emissiveColor, intensity, 100);
 				break;
 			default:
+				light = new THREE.AmbientLight(emissiveColor, intensity);
 				break;
 		}
-		light.name = name;
+		light.name = lightId;
 		return light;
 	}
 
-	static controlLight(scene, turnOnLight) {
+	static controlHemisphereLight(scene, turnOnLight, emissiveColor = 0xffffff, specularColor = 0x0808dd, intensity = 0.2) {
+		Light.removeLight(scene, "Hemisphere-Light");
 		if (turnOnLight) {
-			Light.addLight(scene, "Hemisphere Light", 0xffffff, extraLightName, );
-		} else {
-			Light.removeLight(scene, extraLightName);
+			Light.addLight(scene, "Hemisphere-Light", emissiveColor, specularColor, intensity);
 		}
 	}
 
-	static addLight(scene, lightId, color, name) {
-		console.log("adding light")
-		let light = Light.setLight(lightId, color, name);
+	static addLight(scene, lightId, emissiveColor=0xffffff, specularColor = 0x0808dd, intensity = 0.2) {
+		let light = Light.setLight(lightId, emissiveColor, specularColor, intensity);
 		scene.add(light);
 	}
 
-	static removeLight(scene, name) {
-		console.log("removing light")
-		const selectedObject = scene.getObjectByName(name);
+	static removeLight(scene, lightId) {
+		const selectedObject = scene.getObjectByName(lightId);
 		scene.remove(selectedObject);
 	}
 }
