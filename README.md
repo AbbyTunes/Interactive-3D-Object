@@ -1,6 +1,4 @@
-# New_JS_Project
-
-# [Particle.com]()
+# Interactive-3D-Object
 
 
 ## Overview
@@ -8,25 +6,23 @@
 
 
 ## Functionality and MVP
-- [ ] DOM Manipulation
-- [ ] Mimicking water particle movement
-
-### BONUS 
-- [ ] 3D
-- [ ] color change
+- [ ] interactive 3D Object
+- [ ] changable geometry
+- [ ] changable materials
+- [ ] toggling Spot Light
+- [ ] toggling Ambient Light
+- [ ] object colors
+- [ ] light colors
+- [ ] setting up perspective camera
+- [ ] casting shadow to a background
 
 ## Technologies
  * JavaScript, canvas, html
-
-## Group Members and Contributions
- * Abby: https://github.com/AbbyTunes
+ 
+## Library
+* THREE.js
 
 ## Features and Technical Challenges
-
-<!-- ### Integration of User, Question, Answer associations
-* Highly customized backend routes and configurations
-* All answers tied to parent question
-* User Profile shows answers and questions specific to User on switchable feed -->
 
 ```javascript 
 //index.jsx
