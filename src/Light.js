@@ -14,6 +14,9 @@ export default class Light {
 			case "Hemisphere Light":
 				light = new THREE.HemisphereLight(color, 0x0808dd, 0.3);
 				break;
+			case "Spotlight":
+				light = new THREE.SpotLight(color, 4.0, 3000);
+				break;
 			default:
 				break;
 		}
@@ -26,6 +29,24 @@ export default class Light {
 			Light.addLight(scene, "Hemisphere Light", 0xffffff, extraLightName, );
 		} else {
 			Light.removeLight(scene, extraLightName);
+		}
+	}
+
+	static controlShadows(scene, turnOnShadows, mesh, floorMesh) {
+		let name = "spotlight"
+		if (turnOnShadows) {
+			let spotlight = Light.setLight("Spotlight", 0xffffff, name);
+			spotlight.target = mesh;
+			spotlight.position.y = 250;
+			spotlight.position.x = 505;
+			spotlight.castShadow = true;
+			spotlight.shadow = new THREE.LightShadow(new THREE.PerspectiveCamera(100, 1, 500, 1000));
+			spotlight.shadow.bias = 0.0001;
+			spotlight.shadow.mapSize.width = 2048 * 2;
+			spotlight.shadow.mapSize.height = 2048 * 2;
+			scene.add(spotlight);
+		} else {
+			this.removeLight(scene, name);
 		}
 	}
 
