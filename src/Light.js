@@ -2,14 +2,14 @@ let hemisphereLight = "Hemisphere-Light";
 let spotLight = "Spot-Light";
 
 export default class Light {
-	static setLight(lightId, emissiveColor=0xffffff, intensity=0.5 , specularColor=0xffffff) {
+	static setLight(lightId, emissiveColor=0xffffff, intensity=0.4 , specularColor=0xffffff) {
 		let light;
 		switch (lightId) {
 			case "Ambient-Light":
-				light = new THREE.AmbientLight(emissiveColor, 0.5);
+				light = new THREE.AmbientLight(emissiveColor, 0.4);
 				break;
 			case "Point-Light":
-				light = new THREE.PointLight(emissiveColor, 0.5);
+				light = new THREE.PointLight(emissiveColor, 0.3);
 				break;
 			case "Hemisphere-Light":
 				light = new THREE.HemisphereLight(emissiveColor, specularColor, intensity);
@@ -18,7 +18,7 @@ export default class Light {
 				light = new THREE.SpotLight(emissiveColor, intensity, 3000);
 				break;
 			default:
-				light = new THREE.AmbientLight(emissiveColor, intensity);
+				light = new THREE.AmbientLight(emissiveColor, 0.5);
 				break;
 		}
 		light.name = lightId;
