@@ -15,10 +15,7 @@ export default class Light {
 				light = new THREE.HemisphereLight(emissiveColor, specularColor, intensity);
 				break;
 			case "Spot-Light":
-				light = new THREE.SpotLight(emissiveColor, intensity, 100);
-				break;
-			case "Spotlight":
-				light = new THREE.SpotLight(color, 4.0, 3000);
+				light = new THREE.SpotLight(emissiveColor, intensity, 3000);
 				break;
 			default:
 				light = new THREE.AmbientLight(emissiveColor, intensity);
@@ -35,10 +32,10 @@ export default class Light {
 		}
 	}
 
-	static controlShadows(scene, turnOnShadows, mesh, floorMesh) {
+	static controlShadows(scene, turnOnShadows, mesh) {
 		let name = "spotlight"
 		if (turnOnShadows) {
-			let spotlight = Light.setLight("Spotlight", 0xffffff, name);
+			let spotlight = Light.setLight("Spot-Light", 0xffffff);
 			spotlight.target = mesh;
 			spotlight.position.y = 250;
 			spotlight.position.x = 505;

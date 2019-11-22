@@ -105,7 +105,7 @@ function fullRender() {
 		floorMesh.position.y = -150;
 	}
 
-	Light.controlShadows(scene, Model.checkFloor(), mesh, floorMesh);
+	Light.controlShadows(scene, Model.checkFloor(), mesh);
 
 
 	if (Model.checkFloor()) {
