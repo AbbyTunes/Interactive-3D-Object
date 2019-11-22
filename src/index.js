@@ -9,6 +9,8 @@ import toggleButton from "./toggleButton";
 var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
 renderer.setClearColor(0x000000);
 renderer.setPixelRatio(window.devicePixelRatio);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFShadowMap;
 
 const maxWidth = window.innerWidth;
 const maxHeight = window.innerHeight;
@@ -41,6 +43,15 @@ fullRender();
 function clearObjectFromScene(scene, name) {
 	const selectedObject = scene.getObjectByName(name);
 	scene.remove(selectedObject);
+	if (selectedObject) {
+		if (selectedObject.geometry) {
+			selectedObject.geometry.dispose();
+		}
+
+		if (selectedObject.material) {
+			selectedObject.material.dispose();
+		}
+	}
 }
 
 function fullRender() {
@@ -76,26 +87,33 @@ function fullRender() {
 		mesh = new THREE.Mesh(geometry, material);
 	}
 
-	mesh.position.set(offsetX, offsetY, -1000);
+	mesh.position.set(0, -50, -500);
 	mesh.name = Model.shapeName();
-	scene.add(mesh);
 
 	// add light
 	Light.controlHemisphereLight(scene, hemisphereLight, model.emissiveColor, model.specularColor, model.intensity);
 
 	// toggle Floor
-	let floor = new THREE.PlaneGeometry(10000, 10000, 100, 100);
-	let floorMaterial = new THREE.MeshLambertMaterial({ color: 0xd3d3d3 });
-	let floorMesh = new THREE.Mesh(floor, floorMaterial);
-	floorMesh.name = "floor";
+	clearObjectFromScene(scene, "floor");
+	let floorMesh = null;
 	if (Model.checkFloor()) {
+		let floor = new THREE.PlaneGeometry(10000, 10000, 100, 100);
+		let floorMaterial = new THREE.MeshLambertMaterial({ color: 0xd3d3d3 });
+		floorMesh = new THREE.Mesh(floor, floorMaterial);
+		floorMesh.name = "floor";
 		floorMesh.rotation.x = -90 * Math.PI / 180;
 		floorMesh.position.y = -150;
-		scene.add(floorMesh);
-	} else {
-		clearObjectFromScene(scene, "floor");
 	}
 
+	Light.controlShadows(scene, Model.checkFloor(), mesh, floorMesh);
+
+
+	if (Model.checkFloor()) {
+		floorMesh.receiveShadow = true;
+		scene.add(floorMesh);
+	}
+	mesh.castShadow = true;
+	scene.add(mesh);
 	// add spotlight
 	// let spotLight = new THREE.SpotLight(0xffffff, 2.0, 30); // distance
 	// spotLight.name = "Spot Light";
