@@ -1,4 +1,4 @@
-html, body, canvas, div, label, select, option, input, p {
+html, body, div, label, select, option, input, p {
 	padding: 0px;
 	margin: 0px;
 	font-family: 'Montserrat', sans-serif;
@@ -9,6 +9,13 @@ html, body, canvas, div, label, select, option, input, p {
 }
 
 canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 0px;
+	margin: 0px;
 	background: black;
 	overflow: hidden;
 }
@@ -44,7 +51,7 @@ canvas {
 	position: absolute;
 	top: 20px;
 	left: 0;
-	width: 250px;
+	width: 260px;
 	height: auto;
 	padding: 15px 30px;
 	border: 1px solid white;
@@ -80,7 +87,7 @@ div.second-container {
 }
 
 label {
-	width: 90px;
+	width: 100px;
 	height: 20px;
 	padding: 5px 10px 3px 10px;
 	background: rgb(54, 54, 54);
