@@ -1,7 +1,6 @@
 html, body, canvas, div, label, select, option, input, p {
 	padding: 0px;
 	margin: 0px;
-	overflow: hidden;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
 	border: none;
@@ -11,6 +10,7 @@ html, body, canvas, div, label, select, option, input, p {
 
 canvas {
 	background: black;
+	overflow: hidden;
 }
 
 #button {
@@ -66,24 +66,23 @@ div.container {
 	top: 0;
 	left: 0;
 	width: 100%;
-	margin: 12px auto;
+	height: 30px;
+	margin: 13px auto;
 	/* border: 1px solid rgb(61, 61, 61); */
 }
 
 div.second-container {
 	display: block;
-	position: relative;
-	top: 0;
-	left: 20px;
-	width: 120px;
-	height: auto;
-	/* border: 1px solid rgb(155, 155, 155); */
+    position: relative;
+    top: 0;
+    left: 20px;
+    width: 120px;
 }
 
 label {
 	width: 90px;
-	height: auto;
-	padding: 5px 10px;
+	height: 20px;
+	padding: 5px 10px 3px 10px;
 	background: rgb(54, 54, 54);
 	color: white;
 }
@@ -97,6 +96,24 @@ select {
 	cursor: pointer;
 }
 
+input.slider  {
+	width: 100%;
+	height: 90%;
+	-webkit-appearance: none; 
+	background: rgb(89, 146, 211);
+	cursor: pointer;
+}
+
+input.color {
+	position: relative;
+    top: -4px;
+    left: -2px;
+    right: 0;
+    width: 124px;
+    height: 35px;
+    overflow: hidden;
+}
+
 /* input.text {
 	position: relative;
 	top: 0;
@@ -108,39 +125,6 @@ select {
 	background: rgb(202, 202, 202);
 	color: black;
 } */
-
-
-input.slider  {
-	width: 100%;
-	height: 100%;
-	-webkit-appearance: none; 
-	background: rgb(89, 146, 211);
-	cursor: pointer;
-}
-
-div.checkbox-header {
-	display: block;
-	color: white;
-}
-div.checkbox-container {
-	display: block;
-	color: white;
-}
-
-input.checkbox {
-	display: block;
-	position: relative;
-	top: 0;
-	left: 20px;
-	/* width: 120px;
-	height: auto; */
-	color: white;
-	padding: 5px 7px;
-	background: rgb(202, 202, 202);
-	color: black;
-	cursor: pointer;
-}
-
 
 
 

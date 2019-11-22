@@ -8,7 +8,7 @@ span #Hemisphere-Light  {
 	position: relative;
     top: 1px;
     display: inline-block;
-    width: 30px;
+    width: 35px;
     height: 18px;
 }
 
@@ -31,8 +31,7 @@ label.switch {
   left: 0;
   right: 0;
   bottom: 0;
-  /* width: 20%;
-  height: auto; */
+  padding: 5px;
   background-color: #ccc;
   -webkit-transition: .4s;
   transition: .4s;
@@ -40,7 +39,7 @@ label.switch {
 
 .switch-slider:before {
   position: absolute;
-  content: "";
+  content: " ";
   height: 20px;
   width: 20px;
   bottom: 4px;

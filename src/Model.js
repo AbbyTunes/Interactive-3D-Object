@@ -5,8 +5,8 @@ export default class Model {
 	constructor() {
 		this.scale = 100;
 		this.detail = 20;
-		this.color = 8000;
-		this.color2 = 0;
+		this.objectColor = 0xF3FFE2;
+		this.emissiveColor = 0;
 		this.offsetX = 0;
 		this.offsetY = 0;
 		this.previousShapeName = "cube"
@@ -14,6 +14,7 @@ export default class Model {
 		// this.lightArr.set("Ambient Light", false);
 		// this.lightArr.set("Point Light", false);
 		// this.lightArr.set("Hemisphere Light", false);
+		this.floor = false;
 	}
 
 	static shapeName() {
@@ -24,6 +25,16 @@ export default class Model {
 	static materialName() {
 		let selectMaterial = document.getElementById("material");
 		return selectMaterial.options[selectMaterial.selectedIndex].value;
+	}
+
+	static checkFloor() {
+		let checkFloor = document.getElementById("floor");
+		return checkFloor.checked;
+	}
+
+	static getObjectColor() {
+		let objectColor = document.getElementById("object-color");
+		return objectColor.value;
 	}
 
 	static getModel() {

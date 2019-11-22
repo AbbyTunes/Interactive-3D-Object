@@ -1,2 +1,3 @@
 dist/main.js
 src/Light.js
+src/Floor.js
