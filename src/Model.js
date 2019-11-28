@@ -17,6 +17,7 @@ export default class Model {
 		this.hemisphereLight = false;
 		this.spotLight = false;
 		this.floor = false;
+		// this.clickCount = 0;
 	}
 
 	static shapeName() {

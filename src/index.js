@@ -199,3 +199,10 @@ let floorSwitch = document.getElementById("floor");
 floorSwitch.addEventListener("change", () => {
 	fullRender();
 });
+
+// let button = document.getElementById("button");
+// button.addEventListener("click", () => {
+// 	cnt++
+// 	var divData = document.getElementById("showCount");
+// 	divData.innerHTML = "Number of Downloads: (" + cnt + ")";
+// })
