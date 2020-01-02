@@ -2,7 +2,7 @@ import Model from "./Model";
 import Geometry from "./Geometry";
 import Material from "./Material";
 import Light from "./Light";
-import toggleButton from "./toggleButton";
+import { togglePanel, init, showTab, getFirstChildWithTagName, getHash } from "./togglePanel";
 
 var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
 renderer.setClearColor(0x000000);
@@ -16,8 +16,7 @@ renderer.setSize(maxWidth, maxHeight);
 
 // init camera
 let camera1 = new THREE.PerspectiveCamera(35, maxWidth / maxHeight, 300, 10000);
-let camera2 = new THREE.OrthographicCamera(-1500, 1500, 1500, -1500, 0.1, 10000);
-// camera.position.set(0, 0, 0);
+// let camera2 = new THREE.OrthographicCamera(-1500, 1500, 1500, -1500, 0.1, 10000);
 
 // init scene
 let scene = new THREE.Scene();
@@ -58,13 +57,10 @@ function fullRender() {
 	let scale = model.scale;
 	let detail = model.detail;
 	let metalness = model.metalness;
-	let roughness = model.roughness;
 	let objectColor = model.objectColor;
 	let emissiveColor = model.emissiveColor;
 	let specularColor = model.specularColor;
 	let intensity = model.intensity;
-	let offsetX = model.offsetX;
-	let offsetY = model.offsetY;
 	let isHemisphere = model.hemisphereLight;
     let isSpotLight = model.spotLight;
 	let isFloor = model.floor;
@@ -76,7 +72,7 @@ function fullRender() {
 	let geometry = Geometry.setShape(Model.shapeName(), scale, detail);
 	model.previousShapeName = Model.shapeName();
 
-	let material = Material.setMaterial(Model.materialName(), objectColor, emissiveColor, intensity, metalness, roughness);
+	let material = Material.setMaterial(Model.materialName(), objectColor, emissiveColor, intensity, metalness);
 	material.needsUpdate = true;
 	// console.log(`material after change: ${materialName}`)
 
@@ -158,11 +154,11 @@ metalnessSlider.oninput = function () {
 	fullRender();
 }
 
-let roughnessSlider = document.getElementById("roughness");
-roughnessSlider.oninput = function () {
-	Model.getModel().roughness = this.value * 1.0 / 10;
-	fullRender();
-}
+// let roughnessSlider = document.getElementById("roughness");
+// roughnessSlider.oninput = function () {
+// 	Model.getModel().roughness = this.value * 1.0 / 10;
+// 	fullRender();
+// }
 
 let intensitySlider = document.getElementById("intensity");
 intensitySlider.oninput = function () {
@@ -200,9 +196,4 @@ floorSwitch.addEventListener("change", () => {
 	fullRender();
 });
 
-// let button = document.getElementById("button");
-// button.addEventListener("click", () => {
-// 	cnt++
-// 	var divData = document.getElementById("showCount");
-// 	divData.innerHTML = "Number of Downloads: (" + cnt + ")";
-// })
+

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Interactive_3D_Object</title>
+		<title>Magic Shape by Abby</title>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153483729-1"></script>
 		<script>
@@ -21,120 +21,137 @@
 	<body>
 		<canvas id="canvas"></canvas>
 
-		<div id="button">Control Panel</div>
+		<div id="main-button">Control Panel</div>
 
 		<div id="panel">
-			<div id="background"></div>
 
-			<div class="container">
-				<label for="shape" class="first-label">Geometry</label>
-				<div class="second-container">
-					<select id="shape">
-					<option value="cube">cube</option>
-					<option value="sphere">sphere</option>
-					<option value="cone">cone</option>
-					<option value="tetradron">tetradron</option>
-					<option value="octahedron">octahedron</option>
-					<option value="torus">torus</option>
-					<option value="torusKnot">torusKnot</option>
-				</select>
+			<div id="tabs">
+				<li><a href="#main">Main</a></li>
+				<li><a href="#project">About Project</a></li>
+				<li><a href="#developer">About Developer</a></li>
+			</div>
+
+			<div id="main" class="tabContent">
+
+				<div class="row">
+					<label for="shape" class="first-label">Shape</label>
+					<div class="second-container">
+						<select id="shape">
+						<option value="cube">Cube</option>
+						<option value="sphere">Sphere</option>
+						<option value="cone">Cone</option>
+						<option value="tetradron">Tetradron</option>
+						<option value="octahedron">Octahedron</option>
+						<option value="torusKnot">TorusKnot</option>
+					</select>
+					</div>
+				</div>
+
+				<div class="row">
+					<label for="scale">scale</label>
+					<div class="second-container">
+						<input class="slider" id="scale" type="range" min="50" max="200" value="100">
+					</div>
+				</div>
+
+				<div class="row">
+					<label for="object-color">color</label>
+					<div class="second-container">
+						<input type="color" class='color' name='colorSelect' id='object-color' />
+					</div>
+				</div>
+
+				<div class="row">
+					<label for="material">Material</label>
+					<div class="second-container">
+						<select id="material">
+							<option value="Mesh Lambert">Lambert</option>
+							<option value="Mesh Standard">Metallic</option>
+							<option value="Mesh Normal">Rainbow</option>
+							<!-- <option value="Mesh Phong">Phong</option> -->
+							<option value="Line Basic">Line</option>
+							<option value="Line Dashed">Dashed Line</option>
+						</select>
+					</div>
 				</div>
 				
-			</div>
+				<div class="row">
+					<label for="metalness">metalness</label>
+					<div class="second-container">
+						<input class="slider" id="metalness" type="range" min="1" max="6" value="4">
+					</div>
+				</div>
 
-			<div class="container">
-				<label for="material">Material</label>
-				<div class="second-container">
-					<select id="material">
-						<option value="Mesh Lambert">Lambert</option>
-						<option value="Mesh Standard">Metallic</option>
-						<option value="Mesh Normal">Rainbow</option>
-						<option value="Mesh Phong">Phong</option>
-						<option value="Line Basic">Line</option>
-						<option value="Line Dashed">Dashed Line</option>
-					</select>
+				<!-- <div class="note">works for metallic material</div> -->
+
+				<div class="row">
+					<label for="detail">detail</label>
+					<div class="second-container">
+						<input class="slider" id="detail" type="range" min="5" max="25" value="10">
+					</div>
+				</div>
+
+				<!-- <div class="note">works for sphere, cone, and torusKnot</div> -->
+
+				<!-- <div class="row">
+					<label for="roughness">roughness</label>
+					<div class="second-container">
+						<input class="slider" id="roughness" type="range" min="1" max="9" value="5">
+					</div>
+				</div> -->
+
+				
+
+				<div class="row">
+					<label for="">Hemisphere Light</label>
+					<div class="second-container">
+						<label class="switch">
+							<input type="checkbox" name="light" id="Hemisphere-Light">
+							<span class="switch-slider round"></span>
+						</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<label for="object-color">upper color</label>
+					<div class="second-container">
+						<input type="color" class='color' name='colorSelect' id='emissive-color' />
+					</div>
+				</div>
+
+				<div class="row">
+					<label for="object-color">bottom color</label>
+					<div class="second-container">
+						<input type="color" class='color' name='colorSelect' id='specular-color' />
+					</div>
+				</div>
+
+				<div class="row">
+					<label for="">Spot Light</label>
+					<div class="second-container">
+						<label class="switch">
+							<input type="checkbox" name="floor" id="floor">
+							<span class="switch-slider round"></span>
+						</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<label for="intensity">intensity</label>
+					<div class="second-container">
+						<input class="slider" id="intensity" type="range" min="5" max="10" value="5">
+					</div>
 				</div>
 			</div>
 
-
-			<div class="container">
-				<label for="scale">scale</label>
-				<div class="second-container">
-					<input class="slider" id="scale" type="range" min="50" max="200" value="100">
-				</div>
-			</div>
-
-			<div class="container">
-				<label for="detail">detail</label>
-				<div class="second-container">
-					<input class="slider" id="detail" type="range" min="5" max="25" value="10">
-				</div>
-			</div>
-
-			<div class="container">
-				<label for="metalness">metalness</label>
-				<div class="second-container">
-					<input class="slider" id="metalness" type="range" min="1" max="6" value="4">
-				</div>
-			</div>
-
-			<div class="container">
-				<label for="roughness">roughness</label>
-				<div class="second-container">
-					<input class="slider" id="roughness" type="range" min="1" max="9" value="5">
-				</div>
-			</div>
-
-			
-
-			<div class="container">
-				<label for="">HemisphereLight</label>
-				<div class="second-container">
-					<label class="switch">
-						<input type="checkbox" name="light" id="Hemisphere-Light">
-						<span class="switch-slider round"></span>
-					</label>
-				</div>
-			</div>
-
-			<div class="container">
-				<label for="">Spot Light</label>
-				<div class="second-container">
-					<label class="switch">
-						<input type="checkbox" name="floor" id="floor">
-						<span class="switch-slider round"></span>
-					</label>
-				</div>
-			</div>
-
-			<div class="container">
-				<label for="object-color">object color</label>
-				<div class="second-container">
-					<input type="color" class='color' name='colorSelect' id='object-color' />
-				</div>
-			</div>
-			
-			<div class="container">
-				<label for="object-color">emissive color</label>
-				<div class="second-container">
-					<input type="color" class='color' name='colorSelect' id='emissive-color' />
-				</div>
-			</div>
-
-			<div class="container">
-				<label for="object-color">specular color</label>
-				<div class="second-container">
-					<input type="color" class='color' name='colorSelect' id='specular-color' />
-				</div>
-			</div>
-
-			<div class="container">
-				<label for="intensity">intensity</label>
-				<div class="second-container">
-					<input class="slider" id="intensity" type="range" min="1" max="10" value="5">
-				</div>
+			<div id="project" class="tabContent">
+				About Magic Shape
 			</div>
 			
+			<div id="developer" class="tabContent">
+				About Developer
+			</div>
+
 			<div id="close-button">Close Panel</div>
 		</div>
 

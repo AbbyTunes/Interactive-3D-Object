@@ -2,7 +2,7 @@ let hemisphereLight = "Hemisphere-Light";
 let spotLight = "Spot-Light";
 
 export default class Light {
-	static setLight(lightId, emissiveColor=0xffffff, intensity=0.4 , specularColor=0xffffff) {
+	static setLight(lightId, emissiveColor=0xffffff, intensity=0.4, specularColor=0xffffff) {
 		let light;
 		switch (lightId) {
 			case "Ambient-Light":
@@ -28,7 +28,7 @@ export default class Light {
 	static controlHemisphereLight(scene, turnOnLight, emissiveColor, intensity, specularColor) {
 		Light.removeLight(scene, "Hemisphere-Light");
 		if (turnOnLight) {
-			intensity = intensity / 20;
+			intensity = intensity /= 20;
 			console.log(intensity)
 			Light.addLight(scene, "Hemisphere-Light", emissiveColor, intensity, specularColor);
 		}
