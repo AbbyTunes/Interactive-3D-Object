@@ -14,7 +14,8 @@ class Geometry {
 			case "tetradron":
 				return new THREE.TetrahedronGeometry(scale, 0); // set
 			case "torusKnot":
-				return new THREE.TorusKnotGeometry(scale, 30, 20, detail); // x z  set detail
+				// console.log(`scale: ${scale}, detail: ${detail}`)
+				return new THREE.TorusKnotGeometry(scale / 1.5, detail*1.5, 20, detail); // x z  set detail
 			default:
 				return new THREE.CubeGeometry(scale, scale, scale); // x y z
 		}

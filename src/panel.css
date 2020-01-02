@@ -59,15 +59,23 @@ canvas {
 	z-index: 100;
 }
 
+.modal-wrapper {
+	display: block;
+}
+
 div.row {
 	display: flex;
-	position: relative;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 30px;
-	margin: 12px auto;
-	/* border: 1px solid rgb(61, 61, 61); */
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 28px;
+    margin: 12px auto;
+}
+
+label.first-label {
+	background-color: rgba(0, 0, 0, 0.85);
+	min-width: 130px;
 }
 
 div.second-container {
@@ -76,6 +84,8 @@ div.second-container {
     top: 0;
     left: 20px;
     width: 120px;
+    height: 95%;
+    margin: auto 0;
 }
 
 label {
@@ -93,6 +103,8 @@ label {
 
 select {
 	width: 100%;
+    height: 95%;
+    margin: 0 auto;
 	color: white;
 	padding: 5px 7px;
 	background: rgb(202, 202, 202);
@@ -102,7 +114,7 @@ select {
 
 input.slider  {
 	width: 100%;
-	height: 90%;
+	height: 95%;
 	-webkit-appearance: none; 
 	background: rgb(89, 146, 211);
 	cursor: pointer;
