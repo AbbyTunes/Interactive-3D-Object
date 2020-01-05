@@ -5,7 +5,7 @@ export default class Model {
 	constructor() {
 		this.scale = 100;
 		this.detail = 15;
-		this.metalness = 0.5;
+		this.metalness = 0.3;
 		this.objectColor = 0xF3FFE2;
 		this.emissiveColor = 0xffffff;
 		this.specularColor = 0xffffff;

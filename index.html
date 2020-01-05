@@ -13,6 +13,9 @@
 		
 		<script src="./js/three.js"></script>
 
+		<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+		<link rel="icon" href="./favicon.ico" type="image/x-icon">
+
 		<style></style>
 		<link rel="stylesheet" href="./src/panel.css">
 		<link rel="stylesheet" href="./src/switch.css">
@@ -25,131 +28,254 @@
 
 		<div id="panel">
 
-			<div id="tabs">
-				<li><a href="#main">Main</a></li>
-				<li><a href="#project">About Project</a></li>
-				<li><a href="#developer">About Developer</a></li>
-			</div>
+			<div class="modal-wrapper">
 
-			<div id="main" class="tabContent">
-
-				<div class="row">
-					<label for="shape" class="first-label">Shape</label>
-					<div class="second-container">
-						<select id="shape">
-						<option value="cube">Cube</option>
-						<option value="sphere">Sphere</option>
-						<option value="cone">Cone</option>
-						<option value="tetradron">Tetradron</option>
-						<option value="octahedron">Octahedron</option>
-						<option value="torusKnot">TorusKnot</option>
-					</select>
-					</div>
+				<div id="tabs">
+					<li><a href="#main">Main</a></li>
+					<li><a href="#project">About Project</a></li>
+					<li><a href="#developer">About Developer</a></li>
+						<div class="li-holder"></div>
+					
 				</div>
 
-				<div class="row">
-					<label for="scale">scale</label>
-					<div class="second-container">
-						<input class="slider" id="scale" type="range" min="50" max="200" value="100">
-					</div>
-				</div>
+				<div id="main" class="tabContent">
 
-				<div class="row">
-					<label for="object-color">color</label>
-					<div class="second-container">
-						<input type="color" class='color' name='colorSelect' id='object-color' />
-					</div>
-				</div>
-
-				<div class="row">
-					<label for="material">Material</label>
-					<div class="second-container">
-						<select id="material">
-							<option value="Mesh Lambert">Lambert</option>
-							<option value="Mesh Standard">Metallic</option>
-							<option value="Mesh Normal">Rainbow</option>
-							<!-- <option value="Mesh Phong">Phong</option> -->
-							<option value="Line Basic">Line</option>
-							<option value="Line Dashed">Dashed Line</option>
+					<div class="row">
+						<label for="shape" id="label-shape" class="first-label">Shape</label>
+						<div class="second-container">
+							<select id="shape">
+							<option value="sphere">Sphere</option>	
+							<option value="cube">Cube</option>
+							<option value="cone">Cone</option>
+							<option value="tetradron">Tetradron</option>
+							<option value="octahedron">Octahedron</option>
+							<option value="torusKnot">TorusKnot</option>
 						</select>
+						</div>
 					</div>
+
+					<div class="row">
+						<label for="scale" class="first-label">Scale</label>
+						<div class="second-container">
+							<input class="slider" id="scale" type="range" min="50" max="200" value="100">
+						</div>
+					</div>
+
+					<div class="row">
+						<label for="material" class="first-label">Material</label>
+						<div class="second-container">
+							<select id="material">
+								<option value="Mesh Normal">Rainbow</option>
+								<option value="Mesh Standard">Metallic</option>
+								<option value="Mesh Lambert">Solid</option>
+								<!-- <option value="Mesh Phong">Phong</option> -->
+								<option value="Line Basic">Line</option>
+								<option value="Line Dashed">Dashed Line</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="row">
+						<label for="metalness" class="first-label">Metalness</label>
+						<div class="second-container">
+							<input class="slider" id="metalness" type="range" min="1" max="6" value="4">
+						</div>
+						<div class="third-note">
+							<img class="question-mark" src="./images/i.png" alt="question">
+							<div class="info-note">
+								Applies to material: Metallic
+							</div>
+						</div>
+					</div>
+
+					<!-- <div class="note">works for metallic material</div> -->
+
+					<div class="row">
+						<label for="object-color" class="first-label">Surface Color</label>
+						<div class="second-container">
+							<input type="color" class='color' name='colorSelect' id='object-color' />
+						</div>
+						<div class="third-note">
+							<img class="question-mark" src="./images/i.png" alt="question">
+							<div class="info-note">
+								Applies to all materials except for Rainbow
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<label for="detail" class="first-label">Detail</label>
+						<div class="second-container">
+							<input class="slider" id="detail" type="range" min="5" max="25" value="10">
+						</div>
+						<div class="third-note">
+							<img class="question-mark" src="./images/i.png" alt="question">
+							<div class="info-note">
+								Applies to shapes: Sphere, Cone, and TorusKnot
+							</div>
+						</div>
+					</div>
+
+					<!-- <div class="row">
+						<label for="roughness" class="first-label">roughness</label>
+						<div class="second-container">
+							<input class="slider" id="roughness" type="range" min="1" max="9" value="5">
+						</div>
+					</div> -->
+
+					
+
+					<div class="row">
+						<label for="" class="first-label">Hemisphere Light</label>
+						<div class="second-container">
+							<label class="switch">
+								<input type="checkbox" name="light" id="Hemisphere-Light">
+								<span class="switch-slider round"></span>
+							</label>
+						</div>
+						<div class="third-note">
+							<img class="question-mark" src="./images/i.png" alt="question">
+							<div class="info-note">
+								Applies to material: Solid & Matellic. Controlled by Upper & Bottom light color, and Intensity
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<label for="object-color" class="first-label">Upper Light Color</label>
+						<div class="second-container">
+							<input type="color" class='color' name='colorSelect' id='emissive-color' />
+						</div>
+						<div class="third-note">
+							<img class="question-mark" src="./images/i.png" alt="question">
+							<div class="info-note">
+								Applies to Hemisphere Light, and Spot Light, including Floor
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<label for="object-color" class="first-label">Bottom Light Color</label>
+						<div class="second-container">
+							<input type="color" class='color' name='colorSelect' id='specular-color' />
+						</div>
+					</div>
+
+					<div class="row">
+						<label for="" class="first-label">Spot Light</label>
+						<div class="second-container">
+							<label class="switch">
+								<input type="checkbox" name="floor" id="floor">
+								<span class="switch-slider round"></span>
+							</label>
+						</div>
+						<div class="third-note">
+							<img class="question-mark" src="./images/i.png" alt="question">
+							<div class="info-note">
+								Shows floor and shadow. Controlled by Upper light color, and Intensity
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<label for="intensity" class="first-label">Intensity</label>
+						<div class="second-container">
+							<input class="slider" id="intensity" type="range" min="5" max="10" value="5">
+						</div>
+						<div class="third-note">
+							<img class="question-mark" src="./images/i.png" alt="question">
+							<div class="info-note">
+								Applies to Hemisphere Light, and Spot Light
+							</div>
+						</div>
+					</div>
+					
+				</div>
+
+				<div id="project" class="tabContent">
+
+					<div class="social-media">
+						<div class="intro-text bold">
+							Magic Shape
+						</div>
+						<div class="intro-text">
+							A single-page JavaScript-based DOM manipulation application.
+							<br>
+							<br>
+							Created with JavaScript, CSS, HTML Canvas, WebGL, and THREE.js. Hosted on Github Pages.
+							<br>
+							<br>
+							Introduced different lighting effects in coordination with shadow, background, and camera settings.
+						</div>
+						
+						<a href='https://github.com/AbbyTunes/Interactive-3D-Object'>
+							<div class="intro-text bold bold-hover">Project on Github</div>
+						</a>
+					</div>
+					
 				</div>
 				
-				<div class="row">
-					<label for="metalness">metalness</label>
-					<div class="second-container">
-						<input class="slider" id="metalness" type="range" min="1" max="6" value="4">
-					</div>
+				<div id="developer" class="tabContent">
+					<div class="social-media">
+
+						<div class="intro-text bold">Jun Xu (Abby)</div>
+						<div class="intro-text">
+							Hi there, I'm a former product manager and now software engineer!
+							<br>
+							<br>
+							I enjoy building apps and websites using JavaScript, React, Redux, Apollo, GraphQL, Ruby on Rails, MongoDB, Express,
+							Node.js, AWS, and PostgreSQL.
+							<br>
+							<br>
+							Check out my porfolio:
+						</div>
+						
+						<a href="https://www.abbydeveloper.com">
+							<div class="intro-text bold bold-hover">www.abbydeveloper.com</div>
+						</a>
+						
+
+						<div class="social-media-content">
+							<div class="social-icon-linkedin">
+								<a href="https://www.linkedin.com/in/abby-jun-xu">
+									<img class="icon-img-" src="./images/linkedin.png" alt="linkedin">
+								</a>
+							</div>
+							
+							<div class="social-icon-github">
+								<a href='https://github.com/AbbyTunes/'>
+									<img class="icon-img-" src="./images/github.png" alt="github">
+								</a>
+							</div>
+							<div class="social-icon-angellist">
+								<a href="https://angel.co/abby-jun-xu">
+									<img class="icon-img-" src="./images/angellist.png" alt="angellist">
+								</a>
+							</div>
+							<div class="social-icon-facebook">
+								<a href="https://www.facebook.com/abby.tsui.90">
+									<img class="icon-img-" src="./images/facebook.png" alt="facebook">
+								</a>
+							</div>
+					
+							<div class="social-icon-instagram">
+								<a href="https://www.instagram.com/abby_tunes/">
+									<img class="icon-img-" src="./images/instagram.png" alt="instagram">
+								</a>
+								<!-- <div class="overlay-ins">
+									<img class="icon-img-" id="overlay-ins-img" src="./images/nametag.png" alt="">
+								</div> -->
+							</div>
+
+							<div class="social-icon-abby">
+								<a href="https://www.abbydeveloper.com">
+									<img class="icon-img-" id="jx-icon" src="./images/JX.png" alt="porfolio">
+								</a>
+							</div>
+					
+						</div>
+					</div>					
 				</div>
-
-				<!-- <div class="note">works for metallic material</div> -->
-
-				<div class="row">
-					<label for="detail">detail</label>
-					<div class="second-container">
-						<input class="slider" id="detail" type="range" min="5" max="25" value="10">
-					</div>
-				</div>
-
-				<!-- <div class="note">works for sphere, cone, and torusKnot</div> -->
-
-				<!-- <div class="row">
-					<label for="roughness">roughness</label>
-					<div class="second-container">
-						<input class="slider" id="roughness" type="range" min="1" max="9" value="5">
-					</div>
-				</div> -->
-
-				
-
-				<div class="row">
-					<label for="">Hemisphere Light</label>
-					<div class="second-container">
-						<label class="switch">
-							<input type="checkbox" name="light" id="Hemisphere-Light">
-							<span class="switch-slider round"></span>
-						</label>
-					</div>
-				</div>
-
-				<div class="row">
-					<label for="object-color">upper color</label>
-					<div class="second-container">
-						<input type="color" class='color' name='colorSelect' id='emissive-color' />
-					</div>
-				</div>
-
-				<div class="row">
-					<label for="object-color">bottom color</label>
-					<div class="second-container">
-						<input type="color" class='color' name='colorSelect' id='specular-color' />
-					</div>
-				</div>
-
-				<div class="row">
-					<label for="">Spot Light</label>
-					<div class="second-container">
-						<label class="switch">
-							<input type="checkbox" name="floor" id="floor">
-							<span class="switch-slider round"></span>
-						</label>
-					</div>
-				</div>
-
-				<div class="row">
-					<label for="intensity">intensity</label>
-					<div class="second-container">
-						<input class="slider" id="intensity" type="range" min="5" max="10" value="5">
-					</div>
-				</div>
-			</div>
-
-			<div id="project" class="tabContent">
-				About Magic Shape
-			</div>
-			
-			<div id="developer" class="tabContent">
-				About Developer
 			</div>
 
 			<div id="close-button">Close Panel</div>

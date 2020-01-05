@@ -48,7 +48,13 @@ class Material {
 			case "Points":
 				return new THREE.PointsMaterial({ color: objectColor })
 			default:
-				return new THREE.MeshLambertMaterial({ color: 0xF3FFE2 });
+				new THREE.MeshNormalMaterial({
+					transparent: true,
+					opacity: 0.5,
+					wireframe: true,
+					wireframeLinewidth: 5
+				});
+				// return new THREE.MeshLambertMaterial({ color: 0xF3FFE2 });
 		}
 	}
 }
