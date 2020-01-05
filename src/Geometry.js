@@ -17,7 +17,7 @@ class Geometry {
 				// console.log(`scale: ${scale}, detail: ${detail}`)
 				return new THREE.TorusKnotGeometry(scale / 1.5, detail*1.5, 20, detail); // x z  set detail
 			default:
-				return new THREE.CubeGeometry(scale, scale, scale); // x y z
+				return new THREE.SphereGeometry(scale, detail, detail);
 		}
 	}
 }

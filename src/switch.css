@@ -48,11 +48,11 @@ label.switch {
 }
 
 input:checked + .switch-slider {
-  background-color: rgb(89, 146, 211);;
+  background-color: rgba(195, 134, 125, 0.95);
 }
 
 input:focus + .switch-slider {
-  box-shadow: 0 0 1px rgb(89, 146, 211);;
+  box-shadow: 0 0 1px rgba(195, 134, 125, 0.95);
 }
 
 input:checked + .switch-slider:before {
@@ -76,74 +76,46 @@ div#tabs {
 	display: flex;
 	width: 100%;
 	height: 30px;
-	border: solid 1px green;
-	
-	margin-top: 10px;
-	
-	/* margin: 10px 0;  */
-	/* padding: 0 0 0.3em 0;  */
-	
+	/* margin-top: 10px; */
+/* border: solid 1px green; */
 }
 div#tabs li {
-	border: solid 1px yellow;
+	/* border: solid 1px yellow; */
 	text-decoration: none;
-	margin: auto;
+	display: inline-flex;
+	width: max-content;
+	list-style-type: none;
+}
+
+.li-holder {
+	display: inline-flex;
+	width: 100%;
 	height: 100%;
+	border-bottom: solid 1px white;
+	border-left: solid 1px white;
 }
 div#tabs a { 
-	display: block;
-    list-style-type: none;
-    color: white;
-    background-color: rgba(230, 230, 230, 0.3);
-    border: 1px solid #c9c3ba;
-    border-bottom: none;
-    padding: 0.3em 0.5em;
+	width: max-content;
+	color: white;
+	/* background-color: rgba(230, 230, 230, 0.1); */
+	background-color: rgba(0, 0, 0, 0.3);
+	/* border: 1px solid white; */
+	border-top: 1px solid white;
+	border-left: 1px solid white;
+    border-bottom: 1px solid white;
+	/* padding: 0.3em 0.5em; */
+	padding: 0 11px;
+    padding-top: 6px;
+    padding-bottom: 4px;
+    text-align: center;
     text-decoration: none;
 }
 
 div#tabs a:hover { 
-	background-color: rgba(230, 230, 230, 0.6); 
+	background-color: rgba(230, 230, 230, 0.5); 
 }
 div#tabs a.selected {
-	/* color: white; */
-	background-color: rgba(230, 230, 230, 0.3); 
+	background-color: rgba(230, 230, 230, 0.35); 
 	font-weight: bold;
-}
-
-
-
-
-
-/* div#tabs li { 
-	display: inline;
-    text-decoration: none;
-}
-
-div#tabs li a { 
-	color: white;
-	background-color: rgba(230, 230, 230, 0.3); 
-	border: 1px solid #c9c3ba; 
-	border-bottom: none; 
-	padding: 0.3em 0.5em; 
-	text-decoration: none; 
-}
-
-div#tabs li a:hover { 
-	background-color: rgba(230, 230, 230, 0.6); 
-}
-div#tabs li a.selected {
-	color: white;
-	background-color: rgba(230, 230, 230, 0.3); 
-	font-weight: bold;
-} */
-
-div.tabContent {
-	background-color: rgba(230, 230, 230, 0.3);
-	border: 1px solid #c9c3ba;
-	border-top: none;
-	padding: 0.5em;
-}
-
-div.tabContent.hide {
-	display: none;
+	border-bottom: none;
 }
