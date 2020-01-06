@@ -16,6 +16,13 @@ Introduced different lighting effects in coordination with shadow, background, a
 
 ![Imgur](https://i.imgur.com/LShpNOG.png)
 
+## About Developer
+
+### Abby Xu
+### JavaScript, React, Redux, GraphQL, Rails, MongoDB, Express, Node.js, PostgreSQL, and AWS
+* [Portfolio](https://www.abbydeveloper.com)
+* [Linkedin](https://www.linkedin.com/in/abby-jun-xu/)
+* [Github](https://www.linkedin.com/in/abby-jun-xu/)
 
 ## Features and Technical Challenges
 
