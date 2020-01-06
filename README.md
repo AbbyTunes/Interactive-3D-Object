@@ -22,6 +22,7 @@ Introduced different lighting effects in coordination with shadow, background, a
 ### Encapsulated model state into its own entity to allow for clear interface boundaries between rendering pipeline and business logic, thereby producing maintainable, modular, and extensible code
 
 ```javascript 
+// index.js
 
 	let model = Model.getModel();
 
@@ -36,13 +37,13 @@ Introduced different lighting effects in coordination with shadow, background, a
 	let isSpotLight = model.spotLight;
 	let isFloor = model.floor;
 
-```
-
-```javascript 
+// ...
 	static shapeName() {
 		let selectShape = document.getElementById("shape");
 		return selectShape.options[selectShape.selectedIndex].value;
 	}
+
+	let material = Material.setMaterial(Model.materialName(), objectColor, emissiveColor, intensity, metalness);
 ```
 
 ### Provided user with a control panel including slide bars, on/off switches, color pickers, backed by event handlers that update internal model state
@@ -50,6 +51,8 @@ Introduced different lighting effects in coordination with shadow, background, a
 ![Imgur](https://i.imgur.com/yM1AFZn.png)
 
 ```javascript 
+// index.js
+
 	let intensitySlider = document.getElementById("intensity");
 	intensitySlider.oninput = function () {
 		Model.getModel().intensity = this.value * 1.0;
@@ -61,7 +64,6 @@ Introduced different lighting effects in coordination with shadow, background, a
 		Model.getModel().objectColor = objectColor.value;
 		fullRender();
 	})
-
 ```
 
 ### Allow users to toggle different lighting settings, including Ambient Light, Point Light, Spot Light, Hemisphere Lights.
@@ -70,7 +72,7 @@ Introduced different lighting effects in coordination with shadow, background, a
 ![Imgur](https://i.imgur.com/ad4yP2U.png)
 
 ```javascript
-
+// Light.js
 	static controlShadows(scene, turnOnShadows, mesh, emissiveColor, intensity) {
 		let name = "Spot-Light";
 
@@ -96,7 +98,6 @@ Introduced different lighting effects in coordination with shadow, background, a
 		let light = Light.setLight(lightId, emissiveColor, intensity, specularColor);
 		scene.add(light);
 	}
-
 ```
 
 ### Adding a new flat geometry as the floor, and set its position to suitable place for casting shadow on in the future
@@ -104,6 +105,7 @@ Introduced different lighting effects in coordination with shadow, background, a
 ![Imgur](https://i.imgur.com/2WlopAZ.png)
 
 ```javascript 
+// index.js
 	clearObjectFromScene(scene, "floor");
 
 	let floorMesh = null;
@@ -122,7 +124,8 @@ Introduced different lighting effects in coordination with shadow, background, a
 
 ![Imgur](https://i.imgur.com/17SV1LC.png)
 
-```javascript 
+```javascript
+// index.js
 	requestAnimationFrame(render); 
 	function render() {
 		mesh.rotation.x += 0.005;
