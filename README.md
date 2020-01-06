@@ -1,5 +1,5 @@
-# Interactive-3D-Object
-# [Interactive-3D-Object Demo](https://abbytunes.github.io/Interactive-3D-Object/)
+# Magic Shape by Abby
+# [Live Demo](https://abbytunes.github.io/magic-shape-by-abby-xu/)
 
 ## Overview
 
