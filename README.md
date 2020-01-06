@@ -9,18 +9,18 @@ Magic Shape is a single-page JavaScript-based DOM manipulation application.
 
 Introduced different lighting effects in coordination with shadow, background, and camera settings.
 
-![Imgur](https://i.imgur.com/LShpNOG.png)
-
 ## Technologies
  * JavaScript, HTML Canvas, WebGL
  * Library: THREE.js
  * CSS
 
+![Imgur](https://i.imgur.com/LShpNOG.png)
+
+
 ## Features and Technical Challenges
 
 ### Encapsulated model state into its own entity to allow for clear interface boundaries between rendering pipeline and business logic, thereby producing maintainable, modular, and extensible code
 
-![Imgur](https://i.imgur.com/aS1jOsA.png)
 
 ```javascript 
 
@@ -34,8 +34,9 @@ Introduced different lighting effects in coordination with shadow, background, a
 	let specularColor = model.specularColor;
 	let intensity = model.intensity;
 	let isHemisphere = model.hemisphereLight;
-    let isSpotLight = model.spotLight;
+	let isSpotLight = model.spotLight;
 	let isFloor = model.floor;
+
 ```
 
 ```javascript 
@@ -43,18 +44,12 @@ Introduced different lighting effects in coordination with shadow, background, a
 		let selectShape = document.getElementById("shape");
 		return selectShape.options[selectShape.selectedIndex].value;
 	}
-	
-	static getModel() {
-		if (singletonModelInstance === null) {
-			singletonModelInstance = new Model();
-		}
-		return singletonModelInstance;
-	}
 ```
 
 ### Provided user with a control panel including slide bars, on/off switches, color pickers, backed by event handlers that update internal model state
 
-![Imgur](https://i.imgur.com/yM1AFZn.png)
+
+![Imgur](https://i.imgur.com/aS1jOsA.png)
 
 ```javascript 
 	let intensitySlider = document.getElementById("intensity");
@@ -71,11 +66,21 @@ Introduced different lighting effects in coordination with shadow, background, a
 
 ```
 
-### Allow users to toggle different lighting settings, including Ambient Light, Point Light, Spot Light, Hemisphere Lights. All the lighting effects will interact with different object's shape, material, camera position, floor position, shadow, and object movement.
+### Allow users to toggle different lighting settings, including Ambient Light, Point Light, Spot Light, Hemisphere Lights. 
+
 
 ![Imgur](https://i.imgur.com/ad4yP2U.png)
 
-```javascript 
+```javascript
+
+	static controlHemisphereLight(scene, turnOnLight, emissiveColor, intensity, specularColor) {
+		Light.removeLight(scene, "Hemisphere-Light");
+		if (turnOnLight) {
+			intensity = intensity /= 200;
+			Light.addLight(scene, "Hemisphere-Light", emissiveColor, intensity, specularColor);
+		}
+	}
+
 	static addLight(scene, lightId, emissiveColor, intensity, specularColor) {
 		let light = Light.setLight(lightId, emissiveColor, intensity, specularColor);
 		scene.add(light);
@@ -89,7 +94,10 @@ Introduced different lighting effects in coordination with shadow, background, a
 
 ### Adding a new flat geometry as the floor, and set its position to suitable place for casting shadow on in the future
 
-![Imgur](https://i.imgur.com/GGkrj0W.png)
+### All the lighting effects will interact with different object's shape, material, camera position, and object movement.
+
+
+![Imgur](https://i.imgur.com/yM1AFZn.png)
 
 ```javascript 
 	clearObjectFromScene(scene, "floor");
@@ -127,5 +135,4 @@ requestAnimationFrame(render);
 		renderer.render(scene, camera1);
 		requestAnimationFrame(render);
 	}
-
 ```
