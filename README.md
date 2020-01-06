@@ -24,7 +24,7 @@ JavaScript, React, Redux, GraphQL, Rails, MongoDB, Express, Node.js, PostgreSQL,
 * [Linkedin](https://www.linkedin.com/in/abby-jun-xu/)
 * [Github](https://www.github.com/AbbyTunes)
 
-![Imgur](https://i.imgur.com/MKf4I3B.png)
+![Imgur](https://i.imgur.com/ia1hxWv.png)
 
 ## Features and Technical Challenges
 
