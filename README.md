@@ -21,7 +21,6 @@ Introduced different lighting effects in coordination with shadow, background, a
 
 ### Encapsulated model state into its own entity to allow for clear interface boundaries between rendering pipeline and business logic, thereby producing maintainable, modular, and extensible code
 
-
 ```javascript 
 
 	let model = Model.getModel();
@@ -48,8 +47,7 @@ Introduced different lighting effects in coordination with shadow, background, a
 
 ### Provided user with a control panel including slide bars, on/off switches, color pickers, backed by event handlers that update internal model state
 
-
-![Imgur](https://i.imgur.com/aS1jOsA.png)
+![Imgur](https://i.imgur.com/yM1AFZn.png)
 
 ```javascript 
 	let intensitySlider = document.getElementById("intensity");
@@ -66,18 +64,31 @@ Introduced different lighting effects in coordination with shadow, background, a
 
 ```
 
-### Allow users to toggle different lighting settings, including Ambient Light, Point Light, Spot Light, Hemisphere Lights. 
+### Allow users to toggle different lighting settings, including Ambient Light, Point Light, Spot Light, Hemisphere Lights.
 
 
 ![Imgur](https://i.imgur.com/ad4yP2U.png)
 
 ```javascript
 
-	static controlHemisphereLight(scene, turnOnLight, emissiveColor, intensity, specularColor) {
-		Light.removeLight(scene, "Hemisphere-Light");
-		if (turnOnLight) {
-			intensity = intensity /= 200;
-			Light.addLight(scene, "Hemisphere-Light", emissiveColor, intensity, specularColor);
+	static controlShadows(scene, turnOnShadows, mesh, emissiveColor, intensity) {
+		let name = "Spot-Light";
+
+		if (turnOnShadows) {
+			this.removeLight(scene, name);
+			intensity /= 100;
+			let spotlight = Light.setLight("Spot-Light", emissiveColor, intensity);
+			spotlight.target = mesh;
+			spotlight.position.y = 300;
+			spotlight.position.x = 505;
+			spotlight.castShadow = true;
+			spotlight.shadow = new THREE.LightShadow(new THREE.PerspectiveCamera(100, 1, 500, 1000));
+			spotlight.shadow.bias = 0.0001;
+			spotlight.shadow.mapSize.width = 2048 * 2;
+			spotlight.shadow.mapSize.height = 2048 * 2;
+			scene.add(spotlight);
+		} else {
+			this.removeLight(scene, name);
 		}
 	}
 
@@ -86,18 +97,11 @@ Introduced different lighting effects in coordination with shadow, background, a
 		scene.add(light);
 	}
 
-	static removeLight(scene, lightId) {
-		const selectedObject = scene.getObjectByName(lightId);
-		scene.remove(selectedObject);
-	}
 ```
 
 ### Adding a new flat geometry as the floor, and set its position to suitable place for casting shadow on in the future
 
-### All the lighting effects will interact with different object's shape, material, camera position, and object movement.
-
-
-![Imgur](https://i.imgur.com/yM1AFZn.png)
+![Imgur](https://i.imgur.com/2WlopAZ.png)
 
 ```javascript 
 	clearObjectFromScene(scene, "floor");
@@ -111,24 +115,15 @@ Introduced different lighting effects in coordination with shadow, background, a
 		floorMesh.rotation.x = -90 * Math.PI / 180;
 		floorMesh.position.y = -100;
 	}
-
-	Light.controlShadows(scene, Model.checkFloor(), mesh, emissiveColor, intensity);
-	
-	if (Model.checkFloor()) {
-		floorMesh.receiveShadow = true;
-		scene.add(floorMesh);
-	}
-
-	mesh.castShadow = true;
-	scene.add(mesh);
 ```
 
-### render object in motion - set static canvas, object animation, and perspective camera
+### Render object in motion - set static canvas, object animation, and perspective camera
+### All the model settings will interact with different shapes, materials, camera position, and object movement.
 
 ![Imgur](https://i.imgur.com/17SV1LC.png)
 
 ```javascript 
-requestAnimationFrame(render); 
+	requestAnimationFrame(render); 
 	function render() {
 		mesh.rotation.x += 0.005;
 		mesh.rotation.y += 0.005;
