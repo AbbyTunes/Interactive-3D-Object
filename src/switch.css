@@ -48,11 +48,11 @@ label.switch {
 }
 
 input:checked + .switch-slider {
-  background-color: rgba(195, 134, 125, 0.95);
+  background-color: rgba(209, 137, 126, 0.95);
 }
 
 input:focus + .switch-slider {
-  box-shadow: 0 0 1px rgba(195, 134, 125, 0.95);
+  box-shadow: 0 0 1px rgba(209, 137, 126, 0.95);
 }
 
 input:checked + .switch-slider:before {
@@ -90,7 +90,7 @@ div#tabs li {
 .li-holder {
 	display: inline-flex;
 	width: 100%;
-	height: 100%;
+	height: 95%;
 	border-bottom: solid 1px white;
 	border-left: solid 1px white;
 }

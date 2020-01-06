@@ -4,7 +4,7 @@ import Material from "./Material";
 import Light from "./Light";
 import { togglePanel, init, showTab, getFirstChildWithTagName, getHash } from "./togglePanel";
 
-var renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
+let renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
 renderer.setClearColor(0x000000);
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.shadowMap.enabled = true;

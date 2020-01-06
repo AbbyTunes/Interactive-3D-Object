@@ -28,7 +28,7 @@ export default class Light {
 	static controlHemisphereLight(scene, turnOnLight, emissiveColor, intensity, specularColor) {
 		Light.removeLight(scene, "Hemisphere-Light");
 		if (turnOnLight) {
-			intensity = intensity /= 20;
+			intensity = intensity /= 200;
 			// console.log(intensity)
 			Light.addLight(scene, "Hemisphere-Light", emissiveColor, intensity, specularColor);
 		}
@@ -39,7 +39,7 @@ export default class Light {
 
 		if (turnOnShadows) {
 			this.removeLight(scene, name);
-			intensity /= 10;
+			intensity /= 100;
 			// console.log(intensity)
 			let spotlight = Light.setLight("Spot-Light", emissiveColor, intensity);
 			spotlight.target = mesh;
