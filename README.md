@@ -89,6 +89,8 @@ Introduced different lighting effects in coordination with shadow, background, a
 
 ### Adding a new flat geometry as the floor, and set its position to suitable place for casting shadow on in the future
 
+![Imgur](https://i.imgur.com/GGkrj0W.png)
+
 ```javascript 
 	clearObjectFromScene(scene, "floor");
 
@@ -114,6 +116,8 @@ Introduced different lighting effects in coordination with shadow, background, a
 ```
 
 ### render object in motion - set static canvas, object animation, and perspective camera
+
+![Imgur](https://i.imgur.com/17SV1LC.png)
 
 ```javascript 
 requestAnimationFrame(render); 
