@@ -3,9 +3,10 @@ let mainButton = document.getElementById("main-button");
 let panel = document.getElementById("panel");
 let closeButton = document.getElementById("close-button");
 
+// panel.addEventListener("")
+
 mainButton.addEventListener("click", () => {
 	togglePanel();
-	init(); 
 })
 
 closeButton.addEventListener("click", () => {
@@ -25,7 +26,8 @@ export function togglePanel() {
 var tabLinks = new Array();
 var contentDivs = new Array();
 
-export function init() {
+// export function init() {
+window.onload = function init() {
 
 	// Grab the tab links and content divs from the page
 	var tabListItems = document.getElementById('tabs').childNodes;
