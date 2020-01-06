@@ -8,6 +8,10 @@ html, body, div, label, select, option, input, p, a, li {
 	outline: none;
 }
 
+a {
+	text-decoration: none; 
+}
+
 canvas {
 	position: absolute;
 	top: 0;
@@ -212,6 +216,17 @@ input.color {
 	height: fit-content;
 }
 
+.project-wrapper {
+	display: flex;
+	width: 220px;
+}
+
+.social-link-wrapper {
+	margin: auto;
+    padding-top: 20px;
+    width: 140px;
+}
+
 .intro-text {
 	padding-bottom: 8px;
     color: white;
@@ -232,13 +247,12 @@ input.color {
 
 .social-media-content {
 	display: flex;
-    margin-top: 10px;
-    margin-bottom: 18px;
+    margin: 25px 5px;
     position: relative;
     top: 0;
-    left: -8px;
-	width: 310px;
-	height: 44px;
+    left: 0;
+    width: 280px;
+    height: 44px;
 	/* border: solid 1px grey; */
 }
 
@@ -276,3 +290,5 @@ div.social-icon-instagram {
 #jx-icon {
 	background-color: rgb(38, 148, 23);
 }
+
+
