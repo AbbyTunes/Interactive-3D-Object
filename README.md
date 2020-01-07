@@ -24,6 +24,8 @@ JavaScript, React, Redux, GraphQL, Rails, MongoDB, Express, Node.js, PostgreSQL,
 * [Linkedin](https://www.linkedin.com/in/abby-jun-xu/)
 * [Github](https://www.github.com/AbbyTunes)
 
+![Imgur](https://i.imgur.com/GDACneq.png)
+
 ## Features and Technical Challenges
 
 ### Encapsulated model state into its own entity to allow for clear interface boundaries between rendering pipeline and business logic, thereby producing maintainable, modular, and extensible code
