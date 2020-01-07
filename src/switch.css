@@ -84,7 +84,6 @@ div#tabs li {
 	text-decoration: none;
 	display: inline-flex;
 	width: max-content;
-	list-style-type: none;
 }
 
 .li-holder {
