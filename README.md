@@ -1,7 +1,7 @@
 # Magic Shape by Abby
 # [Live Demo](https://abbytunes.github.io/magic-shape/)
 
-![Imgur](https://i.imgur.com/B0b7NXc.png)
+![logo](https://i.imgur.com/B0b7NXc.png)
 
 ## Overview
 
@@ -14,7 +14,7 @@ Introduced different lighting effects in coordination with shadow, background, a
  * Library: THREE.js
  * CSS
 
-![Imgur](https://i.imgur.com/LShpNOG.png)
+![Imgur](https://i.imgur.com/Na3XySx.png)
 
 ## About Developer
 
@@ -24,7 +24,9 @@ JavaScript, React, Redux, GraphQL, Rails, MongoDB, Express, Node.js, PostgreSQL,
 * [Linkedin](https://www.linkedin.com/in/abby-jun-xu/)
 * [Github](https://www.github.com/AbbyTunes)
 
-![Imgur](https://i.imgur.com/GDACneq.png)
+![skills](https://i.imgur.com/GDACneq.png)
+
+![Imgur](https://i.imgur.com/QQNpNxx.png)
 
 ## Features and Technical Challenges
 
@@ -57,7 +59,7 @@ JavaScript, React, Redux, GraphQL, Rails, MongoDB, Express, Node.js, PostgreSQL,
 
 ### Provided user with a control panel including slide bars, on/off switches, color pickers, backed by event handlers that update internal model state
 
-![Imgur](https://i.imgur.com/yM1AFZn.png)
+![Imgur](https://i.imgur.com/OOeePHz.png)
 
 ```javascript 
 // index.js
@@ -77,8 +79,7 @@ JavaScript, React, Redux, GraphQL, Rails, MongoDB, Express, Node.js, PostgreSQL,
 
 ### Allow users to toggle different lighting settings, including Ambient Light, Point Light, Spot Light, Hemisphere Lights.
 
-
-![Imgur](https://i.imgur.com/ad4yP2U.png)
+![Imgur](https://i.imgur.com/tW7rrrQ.png)
 
 ```javascript
 // Light.js
@@ -111,7 +112,7 @@ JavaScript, React, Redux, GraphQL, Rails, MongoDB, Express, Node.js, PostgreSQL,
 
 ### Adding a new flat geometry as the floor, and set its position to suitable place for casting shadow on in the future
 
-![Imgur](https://i.imgur.com/2WlopAZ.png)
+![Imgur](https://i.imgur.com/5NKpBr9.png)
 
 ```javascript 
 // index.js
@@ -131,7 +132,7 @@ JavaScript, React, Redux, GraphQL, Rails, MongoDB, Express, Node.js, PostgreSQL,
 ### Render object in motion - set static canvas, object animation, and perspective camera
 ### All the model settings will interact with different shapes, materials, camera position, and object movement.
 
-![Imgur](https://i.imgur.com/17SV1LC.png)
+![Imgur](https://i.imgur.com/ArLWIHp.png)
 
 ```javascript
 // index.js
