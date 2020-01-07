@@ -50,7 +50,7 @@ canvas {
 	position: relative;
     top: 0;
     left: 0;
-	margin-top: 22px;
+	margin-top: 15px;
     width: 95px;
     height: auto;
     color: white;
@@ -67,18 +67,43 @@ canvas {
 #panel {
 	display: block;
 	position: absolute;
-	top: 20px;
-	left: 7px;
-	width: auto;
-	height: auto;
-	padding: 27px 25px;
-	border: 1px solid white;
-	background-color: rgba(0, 0, 0, 0.3);
-	z-index: 100;
+    top: 15px;
+    left: 5px;
+    width: auto;
+    height: auto;
+    padding: 18px 25px;
+    padding-top: 15px;
+    border: 1px solid white;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 100;
 }
 
-/* .modal-wrapper {
-} */
+.logo-wrapper {
+	display: flex;
+	width: 310px;
+	margin-bottom: 15px;
+}
+
+.logo-bg {
+	width: 38px;
+    height: 40px;
+    margin: auto 10px;
+    padding-top: 7px;
+    padding-bottom: 3px;
+    padding-left: 8px;
+    padding-right: 5px;
+    border-radius: 50px;
+    background-color: rgba(230, 230, 230, 0.8);
+	/* overflow: hidden; */
+}
+
+.logo-img {
+	width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin: auto;
+	
+}
 
 .tabContent {
 	background-color: rgba(230, 230, 230, 0.35);
@@ -226,22 +251,9 @@ input.color {
 	width: 310px;
 }
 
-.logo-bg {
-	/* background-color: white; */
-	border: solid 1px white;
-	width: 40px;
-	height: 40px;
-}
-
-.logo-bg img {
-	width: 100%;
-	height: 100%;
-	object-fit: contain;
-}
-
 .social-link-wrapper {
 	margin: auto;
-    padding-top: 20px;
+    padding-top: 17px;
     width: 220px;
 }
 
@@ -265,7 +277,8 @@ input.color {
 
 .social-media-content {
 	display: flex;
-    margin: 25px 5px;
+    margin: 12px 5px;
+    /* margin-top: 18px; */
     position: relative;
     top: 0;
     left: 0;
@@ -273,7 +286,6 @@ input.color {
     height: 44px;
 	/* border: solid 1px grey; */
 }
-
 
 div[class^=social-icon-] {
 	width: 40px;
@@ -292,6 +304,7 @@ div[class^=social-icon-]:hover {
 img[class^=icon-img-] {
 	width: 100%;
 	height: 100%;
+	object-fit: contain;
 }
 
 div.social-icon-wechat {
